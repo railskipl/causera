@@ -1,0 +1,88 @@
+<head>
+	<%= stylesheet_link_tag 'style' %>
+</head>
+	<div id="rightside">
+	  <div class="product_box">
+	    <table width="100%" border="1" cellspacing="0" cellpadding="0">
+  			<tr>
+   			 <td width="40%" align="left" valign="top">
+	
+				<div id="container">
+		   			<div id="gallery" class="ad-gallery">
+      					<div class="ad-image-wrapper">      </div>
+   					    <div class="ad-nav">
+   					     <div class="ad-thumbs">
+          					<ul class="ad-thumb-list">
+            		            <li>
+					              <a href="images/1.jpg">
+					                <img src="images/thumbs/t5.jpg" title="" alt="" class="image9">
+					              </a>
+            					</li>
+            					<li>
+					              <a href="images/2.jpg">
+					                <img src="images/thumbs/t6.jpg" title="" alt="" class="image10">
+					              </a>
+            					</li>
+					            <li>
+					              <a href="images/1.jpg">
+					                <img src="images/thumbs/t5.jpg" title="" alt="" class="image9">
+					              </a>
+            					</li>
+            					<li>
+					              <a href="images/2.jpg">
+					                <img src="images/thumbs/t6.jpg" title="" alt="" class="image10">
+					              </a>
+					            </li>
+					            <li>
+					              <a href="images/1.jpg">
+					                <img src="images/thumbs/t5.jpg" title="" alt="" class="image9">
+					              </a>
+            					</li>
+            					<li>
+					              <a href="images/2.jpg">
+					                <img src="images/thumbs/t6.jpg" title="" alt="" class="image10">
+					              </a>
+            					</li>
+			         		 </ul>
+				        </div>
+				      </div>
+				    </div>
+		
+		 
+		  			</div>
+	
+			</td>
+		</table>
+<%
+  paginated_products = @searcher.retrieve_products if params.key?(:keywords)
+  paginated_products ||= products
+%>
+<% if products.empty? %>
+  <%= t(:no_products_found) %>
+<% elsif params.key?(:keywords) %>
+  <h6 class="search-results-title"><%= t(:search_results, :keywords => h(params[:keywords])) %></h6>
+<% end %>
+
+<% if products.any? %>
+
+  <% reset_cycle('default') %>
+  <% products.each do |product| %>
+    <% if Spree::Config[:show_zero_stock_products] || product.has_stock? %>
+      
+        <div class="product-image">
+        	
+          <%=  product_image(product, :itemprop => "image" ,:size => "173x172") %>
+        </div>
+        
+     
+    <% end %>
+  <% end %>
+
+<% end %>
+
+<% if paginated_products.respond_to?(:num_pages)
+      params.delete(:search)
+      params.delete(:taxon)
+%><%= paginate paginated_products %><% end %>
+</div>
+</div>

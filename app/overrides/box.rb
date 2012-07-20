@@ -4,7 +4,7 @@ Deface::Override.new(:virtual_path  => "spree/layouts/spree_application",
                      :partial => "spree/box")
                      
 Deface::Override.new(:virtual_path  => "spree/layouts/spree_application",
-                     :insert_before => "div#content",
+                     :replace => "div#content",
                      :name          => "box2",
                      :partial => "spree/right")
                      

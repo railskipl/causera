@@ -1,59 +1,56 @@
-<head>
+<script type="text/javascript" src="js/jquery.ad-gallery.js"></script>
+
 	<%= stylesheet_link_tag 'style' %>
-</head>
+<%= javascript_include_tag "jquery.ad-gallery.js"%>
+  <script type="text/javascript">
+  $(function() {
+    $('img.image1').data('ad-desc', 'Whoa! This description is set through elm.data("ad-desc") instead of using the longdesc attribute.<br>And it contains <strong>H</strong>ow <strong>T</strong>o <strong>M</strong>eet <strong>L</strong>adies... <em>What?</em> That aint what HTML stands for? Man...');
+    $('img.image1').data('ad-title', 'Title through $.data');
+    $('img.image4').data('ad-desc', 'This image is wider than the wrapper, so it has been scaled down');
+    $('img.image5').data('ad-desc', 'This image is higher than the wrapper, so it has been scaled down');
+    var galleries = $('.ad-gallery').adGallery();
+    setTimeout(function() {
+      galleries[0].addImage("images/thumbs/t7.jpg", "images/7.jpg");
+    }, 1000);
+    setTimeout(function() {
+      galleries[0].addImage("images/thumbs/t8.jpg", "images/8.jpg");
+    }, 2000);
+    setTimeout(function() {
+      galleries[0].addImage("images/thumbs/t9.jpg", "images/9.jpg");
+    }, 3000);
+    setTimeout(function() {
+      galleries[0].removeImage(1);
+    }, 4000);
+    
+    $('#switch-effect').change(
+      function() {
+        galleries[0].settings.effect = $(this).val();
+        return false;
+      }
+    );
+    $('#toggle-slideshow').click(
+      function() {
+        galleries[0].slideshow.toggle();
+        return false;
+      }
+    );
+    $('#toggle-description').click(
+      function() {
+        if(!galleries[0].settings.description_wrapper) {
+          galleries[0].settings.description_wrapper = $('#descriptions');
+        } else {
+          galleries[0].settings.description_wrapper = false;
+        }
+        return false;
+      }
+    );
+  });
+  </script>
+  
+
+
 	<div id="rightside">
-	  <div class="product_box">
-	    <table width="100%" border="1" cellspacing="0" cellpadding="0">
-  			<tr>
-   			 <td width="40%" align="left" valign="top">
-	
-				<div id="container">
-		   			<div id="gallery" class="ad-gallery">
-      					<div class="ad-image-wrapper">      </div>
-   					    <div class="ad-nav">
-   					     <div class="ad-thumbs">
-          					<ul class="ad-thumb-list">
-            		            <li>
-					              <a href="images/1.jpg">
-					                <img src="images/thumbs/t5.jpg" title="" alt="" class="image9">
-					              </a>
-            					</li>
-            					<li>
-					              <a href="images/2.jpg">
-					                <img src="images/thumbs/t6.jpg" title="" alt="" class="image10">
-					              </a>
-            					</li>
-					            <li>
-					              <a href="images/1.jpg">
-					                <img src="images/thumbs/t5.jpg" title="" alt="" class="image9">
-					              </a>
-            					</li>
-            					<li>
-					              <a href="images/2.jpg">
-					                <img src="images/thumbs/t6.jpg" title="" alt="" class="image10">
-					              </a>
-					            </li>
-					            <li>
-					              <a href="images/1.jpg">
-					                <img src="images/thumbs/t5.jpg" title="" alt="" class="image9">
-					              </a>
-            					</li>
-            					<li>
-					              <a href="images/2.jpg">
-					                <img src="images/thumbs/t6.jpg" title="" alt="" class="image10">
-					              </a>
-            					</li>
-			         		 </ul>
-				        </div>
-				      </div>
-				    </div>
-		
-		 
-		  			</div>
-	
-			</td>
-		</table>
-<%
+		<%
   paginated_products = @searcher.retrieve_products if params.key?(:keywords)
   paginated_products ||= products
 %>
@@ -67,22 +64,78 @@
 
   <% reset_cycle('default') %>
   <% products.each do |product| %>
-    <% if Spree::Config[:show_zero_stock_products] || product.has_stock? %>
-      
-        <div class="product-image">
-        	
+
+	 <div class="product_box">
+	 	
+	  <table width="100%" border="1" cellspacing="0" cellpadding="0">
+  <tr>
+    <td width="40%" align="left" valign="top">
+	
+	<div id="container">
+   
+    <div id="gallery" class="ad-gallery">
+      <div class="ad-image-wrapper">      </div>
+   
+      <div class="ad-nav">
+        <div class="ad-thumbs">
+          <ul class="ad-thumb-list">
+          	<% if Spree::Config[:show_zero_stock_products] || product.has_stock? %>
+    
+        	<li>
           <%=  product_image(product, :itemprop => "image" ,:size => "173x172") %>
+      
+
+     		</li>
+        <% end %>
+  
+     		</ul>
         </div>
-        
-     
-    <% end %>
-  <% end %>
+      </div>
+    </div>
+    
+  </div>
+	
+	</td>
+          <td align="left" valign="top">
+	
+	<div class="discription">
+	  <p class="heading2"><%= truncate(product.name, :length => 50) %>
+      </p>
+     <div class="form_wrap">
+     	<table width="100%" border="0" cellpadding="0" cellspacing="10">
+  <tr>
+    <td class="textfield_bg">  <select name="select" class="list">
+    <option>Size</option>
+  </select></td>
+  </tr>
+  <tr>
+    <td class="textfield_bg"><select name="select2" class="list">
+      <option>Color</option>
+    </select></td>
+  </tr>
+  <tr>
+    <td align="center" valign="middle" class="price"> <%= number_to_currency product.price %>  </td>
+  </tr>
+  <tr>
+    <td align="center" valign="top">
+	 <a class='inline' style="text-decoration:none" href="#inline_content"><input name="" type="button"  class="cart_button" /></a>
+   
+   </td>
+  </tr>
+</table>
+
+		
+</div></td>
+    </tr>
+</table></div>
+
 
 <% end %>
 
-<% if paginated_products.respond_to?(:num_pages)
+<% end %>
+
+<!-- <% if paginated_products.respond_to?(:num_pages)
       params.delete(:search)
       params.delete(:taxon)
-%><%= paginate paginated_products %><% end %>
-</div>
+%><%= paginate paginated_products %><% end %> -->
 </div>

@@ -19,7 +19,7 @@
     Change the following styles to modify the appearance of ColorBox.  They are
     ordered & tabbed in a way that represents the nesting of the generated HTML.
 */
-#cboxOverlay{background:url(../images/overlay.png) repeat 0 0;}
+#cboxOverlay{background:url(../assets/overlay.png) repeat 0 0;}
 
 
 /*
@@ -65,7 +65,7 @@
 
 
 #cboxClose {
-    background: url("../images/close.jpg") no-repeat scroll 0 0 transparent;
+    background: url("../assets/close.jpg") no-repeat scroll 0 0 transparent;
     bottom: 0;
     height: 430px;
     position: absolute;

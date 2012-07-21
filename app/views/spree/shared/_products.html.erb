@@ -1,5 +1,5 @@
-<%= stylesheet_link_tag 'style', 'jquery.ad-gallery' %>
-<%= javascript_include_tag "jquery.ad-gallery.js"%>
+<%= stylesheet_link_tag 'style', 'jquery.ad-gallery','colorbox' %>
+<%= javascript_include_tag "jquery.ad-gallery.js","jquery.colorbox.js","jquery.colorbox-min.js"%>
   <script type="text/javascript">
   $(function() {
     $('img.image1').data('ad-desc', 'Whoa! This description is set through elm.data("ad-desc") instead of using the longdesc attribute.<br>And it contains <strong>H</strong>ow <strong>T</strong>o <strong>M</strong>eet <strong>L</strong>adies... <em>What?</em> That aint what HTML stands for? Man...');
@@ -39,6 +39,33 @@
     );
   });
   </script>
+  
+  	<script>
+			$(document).ready(function(){
+				//Examples of how to assign the ColorBox event to elements
+				$(".group1").colorbox({rel:'group1'});
+				$(".group2").colorbox({rel:'group2', transition:"fade"});
+				$(".group3").colorbox({rel:'group3', transition:"none", width:"75%", height:"75%"});
+				$(".group4").colorbox({rel:'group4', slideshow:true});
+				$(".ajax").colorbox();
+				$(".youtube").colorbox({iframe:true, innerWidth:425, innerHeight:344});
+				$(".iframe").colorbox({iframe:true, width:"80%", height:"80%"});
+				$(".inline").colorbox({inline:true, width:"50%"});
+				$(".callbacks").colorbox({
+					onOpen:function(){ alert('onOpen: colorbox is about to open'); },
+					onLoad:function(){ alert('onLoad: colorbox has started to load the targeted content'); },
+					onComplete:function(){ alert('onComplete: colorbox has displayed the loaded content'); },
+					onCleanup:function(){ alert('onCleanup: colorbox has begun the close process'); },
+					onClosed:function(){ alert('onClosed: colorbox has completely closed'); }
+				});
+				
+				//Example of preserving a JavaScript event for inline calls.
+				$("#click").click(function(){ 
+					$('#click').css({"background-color":"#f00", "color":"#fff", "cursor":"inherit"}).text("Open this window again and this message will still be here.");
+					return false;
+				});
+			});
+		</script>
   
 
 	<div id="rightside">
@@ -113,6 +140,7 @@
   <tr>
     <td align="center" valign="top">
 	 <a class='inline' style="text-decoration:none" href="#inline_content"><input name="" type="button"  class="cart_button" /></a>
+	 
    
    </td>
   </tr>
@@ -127,6 +155,59 @@
 <% end %>
 
 <% end %>
+<!-- This contains the hidden content for inline calls -->
+<div style='display: none'>
+
+  <div id='inline_content' style=" background: url(assets/lightbox_bg.png); border-radius: 10px 10px 10px 10px; padding:7px">
+<div style="width:100%; background: url(assets/lightbox_bg.jpg); border-radius: 10px 10px 10px 10px;">
+<div class="lightbox_title">Your Cart</div>
+<div style="padding:20px; border-top:1px solid #fff">
+
+<table width="100%" border="0" cellspacing="5" cellpadding="0">
+<tr>
+<td class="cart_line"><div class="cart_product">4 loaves of bread in the shape of the school crest	</div>				<div class="cart_price">$42.00</div></td>
+</tr>
+
+<tr>
+<td class="cart_line"><div class="cart_product">Tax (California)	</div>				<div class="cart_price">$6.50</div></td>
+</tr>
+
+<tr>
+<td class="cart_line"><div class="cart_product">Tax (California)	</div>				<div class="cart_price">$6.50</div></td>
+</tr>
+
+<tr>
+<td class="cart_line"><div class="cart_product">Tax (California)	</div>				<div class="cart_price">$6.50</div></td>
+</tr>
+
+<tr>
+<td class="cart_line"><div class="cart_product">Tax (California)	</div>				<div class="cart_price">$6.50</div></td>
+</tr>
+
+<tr>
+<td class="cart_line2"><div class="cart_total">Total	</div>				<div class="cart_price">$48.50</div></td>
+</tr>
+
+  <tr>
+<td class="divider2">&nbsp;</td>
+</tr>
+
+<tr>
+<td align="right" valign="top"><a class="ajax" href="flash.html">
+  <input type="button" value="" class="continue" /></a></td>
+</tr>
+</table>
+
+  </div>
+</div>
+
+ 
+  
+
+	
+	</div>
+</div>
+<!-- end of content for inline calls -->
 
 <!-- <% if paginated_products.respond_to?(:num_pages)
       params.delete(:search)

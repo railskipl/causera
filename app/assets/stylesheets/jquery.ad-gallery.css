@@ -10,7 +10,7 @@
     width: 250px;
     height: 200px;
     margin-bottom: 10px;
-    position: absolute;
+    position: relative;
     overflow: hidden; background:url(../assets/divider.jpg) no-repeat center right
   }
     .ad-gallery .ad-image-wrapper .ad-loader {
@@ -45,7 +45,7 @@
       background: url(trans.gif);
     }
       .ad-gallery .ad-image-wrapper .ad-prev .ad-prev-image, .ad-gallery .ad-image-wrapper .ad-next .ad-next-image {
-        background: url(../assets/ad_prev.png);
+        background: url(../assets/ad_prev.png) no-repeat;
         width: 30px;
         height: 30px;
         display: none;
@@ -55,7 +55,7 @@
         z-index: 101;
       }
       .ad-gallery .ad-image-wrapper .ad-next .ad-next-image {
-        background: url(../assets/ad_next.png);
+        background: url(../assets/ad_next.png) no-repeat;
         width: 30px;
         height: 30px;
         right: 0;
@@ -84,7 +84,7 @@
       }
       * html .ad-gallery .ad-image-wrapper .ad-image .ad-image-description {
         background: none;
-        filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(enabled=true, sizingMethod=scale, src='opa75.png');
+        filter:progid:DXImageTransform.Microsoft.AlphaImageLoader (enabled=true, sizingMethod=scale, src='opa75.png');
       }
         .ad-gallery .ad-image-wrapper .ad-image .ad-image-description .ad-description-title {
           display: block;
@@ -111,8 +111,8 @@
       font-style: italic;
     }
   .ad-gallery .ad-nav {
-    width: 96%;
-    position: relative; left:285px ; top:140px
+    width: 77%;
+    position: relative; left:285px ; top:-56px
   }
     .ad-gallery .ad-forward, .ad-gallery .ad-back {
       position: absolute;
@@ -127,17 +127,39 @@
     .ad-gallery .ad-back {
       cursor: pointer;
       left: -15px;
-      width: 13px;
+      width: 14px;
+      display: block;
+      background: url(../assets/ad_prev.png) 0px 12px no-repeat;
+    }
+	
+	
+	    .ad-gallery .ad-back:hover {
+      cursor: pointer;
+      left: -15px;
+      width: 14px;
       display: block;
       background: url(../assets/ad_scroll_back.png) 0px 12px no-repeat;
     }
+	
+	
+	
     .ad-gallery .ad-forward {
       cursor: pointer;
       display: block;
-      right: -12px;
-      width: 13px;
+      right: -15px;
+      width: 14px;
+      background: url(../assets/ad_next.png) 0px 12px no-repeat;
+    }
+	
+	    .ad-gallery .ad-forward:hover {
+      cursor: pointer;
+      display: block;
+      right: -15px;
+      width: 14px;
       background: url(../assets/ad_scroll_forward.png) 0px 12px no-repeat;
     }
+	
+	
     .ad-gallery .ad-nav .ad-thumbs {
       overflow: hidden;
       width: 100%;

@@ -12,7 +12,7 @@
 ----------------------------------*/
 .ui-widget { font-family: Verdana,Arial,sans-serif; font-size: 1.1em; }
 .ui-widget input, .ui-widget select, .ui-widget textarea, .ui-widget button { font-family: Verdana,Arial,sans-serif; font-size: 1em; }
-.ui-widget-content { border: 1px solid #aaaaaa; background: #ffffff url(../images/bar.png) 50% 50% repeat-x; color: #222222; height:20px; border-radius:5px; margin:5px 0 0 0 }
+.ui-widget-content { border: 1px solid #aaaaaa; background: url(../images/bar.png) 50% 50% repeat-x; color: #222222; height:20px; border-radius:5px; margin:5px 0 0 0 }
 .ui-widget-content a { color: #222222; }
 .ui-widget-header { border: 1px solid #aaaaaa; background: #cccccc url(images/ui-bg_highlight-soft_75_cccccc_1x100.png) 50% 50% repeat-x; color: #222222; font-weight: bold; }
 .ui-widget-header a { color: #222222; }
@@ -250,6 +250,6 @@
     
     font-weight: bold;
     position: relative;
-    left: -80px;
-    top: -20px; color:#000000
+    left: 80px;
+    top: -20px; color:#fff
 }

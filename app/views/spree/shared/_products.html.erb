@@ -1,6 +1,6 @@
-<script type="text/javascript" src="js/jquery.ad-gallery.js"></script>
 
-	<%= stylesheet_link_tag 'style'%>
+
+	<%= stylesheet_link_tag 'style', 'jquery.ad-gallery' %>
 <%= javascript_include_tag "jquery.ad-gallery.js"%>
   <script type="text/javascript">
   $(function() {
@@ -12,12 +12,7 @@
     setTimeout(function() {
       galleries[0].addImage("images/thumbs/t7.jpg", "images/7.jpg");
     }, 1000);
-    setTimeout(function() {
-      galleries[0].addImage("images/thumbs/t8.jpg", "images/8.jpg");
-    }, 2000);
-    setTimeout(function() {
-      galleries[0].addImage("images/thumbs/t9.jpg", "images/9.jpg");
-    }, 3000);
+    
     setTimeout(function() {
       galleries[0].removeImage(1);
     }, 4000);
@@ -74,18 +69,23 @@
 	<div id="container">
    
     <div id="gallery" class="ad-gallery">
-      <div class="ad-image-wrapper">      </div>
+      <div class="ad-image-wrapper">  </div>
    
       <div class="ad-nav">
         <div class="ad-thumbs">
           <ul class="ad-thumb-list">
+          	
           	<% if Spree::Config[:show_zero_stock_products] || product.has_stock? %>
-    
+  
+       <% product.images.each do |i| %>
         	<li>
-          <%=  product_image(product, :itemprop => "image" ,:size => "173x172") %>
-      
+              <%= link_to image_tag(i.attachment.url(:mini)), i.attachment.url(:product) %>
+    <% end %>
+      </li>
+  </ul>
 
-     		</li>
+          
+      		
         <% end %>
   
      		</ul>

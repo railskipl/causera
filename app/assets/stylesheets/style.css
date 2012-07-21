@@ -30,7 +30,7 @@ h2{ font-size:20px; text-align:center; color:#333333}
 
 #box_wrap{ width:auto; height:auto; margin:20px 0 0 0; overflow:hidden}
 
-#box1{ width:235px; height:auto; padding:5px; border-radius:5px; background:#e8eae9; float:left; font-size:16px; font-weight:bold; color:#383838; height:60px; font-family:'Rockwell', Arial, Helvetica, sans-serif}
+#box1{ width:210px; height:auto; padding:5px 5px 0 30px; border-radius:5px; background:#e8eae9; float:left; font-size:16px; font-weight:bold; color:#383838; height:60px; font-family:'Rockwell', Arial, Helvetica, sans-serif}
 
 #box2{ width:691px; height:auto; text-align:left; padding:2px; border-radius:5px; background:#e8eae9; float:left; font-size:17px; color:#383838; margin:0 0 0 20px; font-family:'Rockwell', Arial, Helvetica, sans-serif}
 
@@ -45,7 +45,7 @@ h2{ font-size:20px; text-align:center; color:#333333}
 
 #leftside{ width:242px; height:auto; float:left; text-align:left}
 
-.heading{ font-family:'Rockwell', Arial, Helvetica, sans-serif; color:#383838; font-size:16px; font-weight:bold; margin:10px 0 10px 20px}
+.heading{ font-family:'Rockwell', Arial, Helvetica, sans-serif; color:#383838; font-size:16px; font-weight:bold; margin:10px 0 10px 30px}
 
 .heading2{ font-family:'Rockwell', Arial, Helvetica, sans-serif; color:#383838; font-size:16px; font-weight:bold;}
 
@@ -83,7 +83,7 @@ box-shadow:5px 5px 5px #333333; }
 .list{ width:120px; height:auto; border:1px solid #bbbbbb; background:url(../assets/field_bg.jpg) repeat-x bottom left; padding:2px 2px 2px 5px}
 .list2{ width:20px; height:auto; border:1px solid #262626;}
 
-.price{ color:#000084; font-size:20px; font-weight:bold}
+.price{ color:#F57D22; font-size:20px; font-weight:bold}
 
 .price2{ color:#0000ff; font-size:20px; font-weight:bold}
 
@@ -96,12 +96,6 @@ box-shadow:5px 5px 5px #333333; }
 .lightbox_title{ background:url(../images/title_bg.jpg) repeat-x; font-size:20px; font-weight:bold; text-align:left; padding:20px; color:#0000ff}
 
 .productname{ color:#666666; font-size:22px; font-weight:bold}
-
-
-
-
-
-
 
 
 

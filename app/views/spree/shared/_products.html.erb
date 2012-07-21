@@ -1,6 +1,4 @@
-
-
-	<%= stylesheet_link_tag 'style', 'jquery.ad-gallery' %>
+<%= stylesheet_link_tag 'style', 'jquery.ad-gallery' %>
 <%= javascript_include_tag "jquery.ad-gallery.js"%>
   <script type="text/javascript">
   $(function() {
@@ -43,7 +41,6 @@
   </script>
   
 
-
 	<div id="rightside">
 		<%
   paginated_products = @searcher.retrieve_products if params.key?(:keywords)
@@ -83,10 +80,7 @@
     <% end %>
       </li>
   </ul>
-
-          
-      		
-        <% end %>
+<% end %>
   
      		</ul>
         </div>

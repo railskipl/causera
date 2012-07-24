@@ -8,7 +8,7 @@
     $('img.image5').data('ad-desc', 'This image is higher than the wrapper, so it has been scaled down');
     var galleries = $('.ad-gallery').adGallery();
     setTimeout(function() {
-      galleries[0].addImage("images/thumbs/t7.jpg", "images/7.jpg");
+      galleries[0].addImage("/assets/thumbs/t7.jpg", "/assets/7.jpg");
     }, 1000);
     
     setTimeout(function() {
@@ -66,7 +66,85 @@
 				});
 			});
 		</script>
+		<body>
+  <div align="center" id="maindiv">
+	
+
+	
+	<div id="header1">
+	  <div id="header_wrap">
+	  <div id="logo"><a href="#"><img src="/assets/logo.jpg" alt="" border="0" /></a></div>
+	  
+	  <div id="slogan">Annual Alumni Campaign</div>
+	  
+	  <div id="sn">
+	  
+	  <div id="share">Help us! Share this with friends</div>
+	  <a href="#"><img src="/assets/facebook.jpg" alt="Facebook" title="Facebook" border="0" /></a> <a href="#"><img src="/assets/twitter.jpg" alt="Twitter" title="Twitter" border="0" style="margin-left:10px"/></a></div>
+	  
+	  </div>
+	</div>
+	
+	
+	<div id="wrap">
+	
+	<div id="alert">
+	<div id="alert_image"><img src="/assets/alert.png" alt="" /></div>
+	<div>Only <span class="orange">4 days</span> left to place your order!<br />
+    <span class="smalltext">All orders must be placed by on 9/17/2012</span></div>
+	</div>
+	
+	
+	<div id="box_wrap">
+    <div id="box1" style=" background-image:url(/assets/tick.jpg); background-repeat:no-repeat; background-position:2px 2px;">Our goal is <span class="orange">$150,000
+	</span>
+      <div id="progress"></div><label id="amount">100%</label>
+	</div>
+	
+	
+	<div id="box2"><div style="padding:3px 0 3px 30px; background:url(/assets/user.jpg) no-repeat" >Our supporters...</div>
+	<div id="white_box"><div class="white_smallbox"><strong>George and Julie</strong> <br />
+	  <span class="smalltext">22 minutes ago</span></div>
+	<div class="white_smallbox"><strong>George and Julie</strong> <br />
+	  <span class="smalltext">22 minutes ago</span></div>
+	<div class="white_smallbox"><strong>George and Julie</strong> <br />
+	  <span class="smalltext">22 minutes ago</span></div>
+	<div class="white_smallbox"><strong>George and Julie</strong> <br />
+	  <span class="smalltext">22 minutes ago</span></div>
+	<div class="white_smallbox_last"><strong>George and Julie</strong> <br />
+	  <span class="smalltext">22 minutes ago</span></div>
+	</div>
+	</div>
+	
+	
+  </div>
   
+  
+  
+	
+	<div id="leftside">
+	  <div class="leftbox1" style="background-image:url(/assets/fundraiser.jpg); background-repeat:no-repeat; background-position:2px 10px">
+	   <div class="heading">About this Fundraiser</div>
+	    <div class="whitebg"><strong>In order to fund the new gym, we've set an ambitious goal of $150,000 this year. Thank you for your support!</strong>
+	    <p>Annual Alumni Campaign - lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris commodo lacinia quam vel cursus. Vivamus vulputate, elit eget fringilla bibendum, quam turpis placerat eros, ac porttitor nibh lacus at dolor. Morbi sagittis urna sed mi vehicula porta. </p>
+	    <p>Vestibulum nec quam urna, non suscipit nulla. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Phasellus facilisis eleifend faucibus. Cum sociis natoque penatibus et magnis dis. </p>
+	    <p>Vivamus viverra turpis sit amet metus consequat gravida sed eget enim. Curabitur aliquet consectetur magna nec vehicula. Fusce gravida arcu eu nunc pharetra lacinia. </p>
+	    </div>
+	  </div>
+	  
+	  
+	  
+	  
+	  
+	  <div class="leftbox1" style="background-image:url(/assets/setting.jpg); background-repeat:no-repeat; background-position:2px 10px">
+	   <div class="heading">About this Fundraiser</div>
+      <a href="#"><img src="/assets/video.jpg" alt="" width="242" height="112" border="0" /></a></div>
+	  
+	  
+	  
+	</div>
+	
+	
 
 	<div id="rightside">
 		<%
@@ -98,7 +176,7 @@
       <div class="ad-nav">
         <div class="ad-thumbs">
           <ul class="ad-thumb-list">
-          	
+          	 
           	<% if Spree::Config[:show_zero_stock_products] || product.has_stock? %>
   
        <% product.images.each do |i| %>
@@ -139,7 +217,9 @@
   </tr>
   <tr>
     <td align="center" valign="top">
-	 <a class='inline' style="text-decoration:none" href="#inline_content"><input name="" type="button"  class="cart_button" /></a>
+	 <a class='inline' style="text-decoration:none" href="#inline_content">	 	<%= link_to "", product, :itemprop => 'url',:class => "cart_button" %>
+	 	
+	 </a>
 	 
    
    </td>
@@ -152,41 +232,22 @@
 </table></div>
 
 
-<% end %>
 
-<% end %>
 <!-- This contains the hidden content for inline calls -->
 <div style='display: none'>
 
   <div id='inline_content' style=" background: url(assets/lightbox_bg.png); border-radius: 10px 10px 10px 10px; padding:7px">
 <div style="width:100%; background: url(assets/lightbox_bg.jpg); border-radius: 10px 10px 10px 10px;">
 <div class="lightbox_title">Your Cart</div>
+
 <div style="padding:20px; border-top:1px solid #fff">
 
 <table width="100%" border="0" cellspacing="5" cellpadding="0">
 <tr>
-<td class="cart_line"><div class="cart_product">4 loaves of bread in the shape of the school crest	</div>				<div class="cart_price">$42.00</div></td>
+<td class="cart_line"><div class="cart_product"><%= truncate(product.name, :length => 50) %></div>				<div class="cart_price"><%= number_to_currency product.price %> </div></td>
 </tr>
 
-<tr>
-<td class="cart_line"><div class="cart_product">Tax (California)	</div>				<div class="cart_price">$6.50</div></td>
-</tr>
 
-<tr>
-<td class="cart_line"><div class="cart_product">Tax (California)	</div>				<div class="cart_price">$6.50</div></td>
-</tr>
-
-<tr>
-<td class="cart_line"><div class="cart_product">Tax (California)	</div>				<div class="cart_price">$6.50</div></td>
-</tr>
-
-<tr>
-<td class="cart_line"><div class="cart_product">Tax (California)	</div>				<div class="cart_price">$6.50</div></td>
-</tr>
-
-<tr>
-<td class="cart_line2"><div class="cart_total">Total	</div>				<div class="cart_price">$48.50</div></td>
-</tr>
 
   <tr>
 <td class="divider2">&nbsp;</td>
@@ -208,7 +269,9 @@
 	</div>
 </div>
 <!-- end of content for inline calls -->
+<% end %>
 
+<% end %>
 <!-- <% if paginated_products.respond_to?(:num_pages)
       params.delete(:search)
       params.delete(:taxon)

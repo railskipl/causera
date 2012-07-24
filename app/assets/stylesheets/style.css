@@ -89,7 +89,7 @@ box-shadow:5px 5px 5px #333333; }
 
 .button{ background:url(../images/button.jpg) repeat-x; border:0; border-width:0; cursor:pointer; border-radius:5px; padding:5px; background:#ff9900; box-shadow:1px 1px 0px #7d7d7d; color:#FFFFFF; font-weight:bold; text-shadow:1px 1px 0 #b96f00; text-decoration:none;}
 
-.cart_button{ background:url(../assets/cart_button.png) no-repeat !important; width:140px !important; height:34px !important; border:none !important; cursor:pointer !important}
+.cart_button{ background:url(../assets/cart_button.png) no-repeat ; width:140px ; height:34px ; border:none ; cursor:pointer; padding: 10px 90px 10px 49px}
 
 .button2{ background:url(../assets/button.jpg) repeat-x; border:0; border-width:0; cursor:pointer; border-radius:5px; padding:5px; background:#ff9900; box-shadow:1px 1px 0px #7d7d7d; color:#FFFFFF; font-weight:bold; text-shadow:1px 1px 0 #b96f00; text-decoration:none; width:80px}
 

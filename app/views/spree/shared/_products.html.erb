@@ -1,5 +1,7 @@
-<%= stylesheet_link_tag 'style', 'jquery.ad-gallery','colorbox' %>
-<%= javascript_include_tag "jquery.ad-gallery.js","jquery.colorbox.js","jquery.colorbox-min.js"%>
+<%= stylesheet_link_tag 'style', 'jquery.ad-gallery','colorbox','lightbox' %>
+
+  
+<%= javascript_include_tag "jquery.ad-gallery.js","jquery.colorbox.js","jquery.colorbox-min.js", "lightbox1" %>
   <script type="text/javascript">
   $(function() {
     $('img.image1').data('ad-desc', 'Whoa! This description is set through elm.data("ad-desc") instead of using the longdesc attribute.<br>And it contains <strong>H</strong>ow <strong>T</strong>o <strong>M</strong>eet <strong>L</strong>adies... <em>What?</em> That aint what HTML stands for? Man...');
@@ -204,7 +206,8 @@
      	<table width="100%" border="0" cellpadding="0" cellspacing="10">
   <tr>
     <td class="textfield_bg">  <select name="select" class="list">
-    <option>Size</option>
+    <option>Select</option>
+  
   </select></td>
   </tr>
   <tr>
@@ -217,7 +220,8 @@
   </tr>
   <tr>
     <td align="center" valign="top">
-	 <a class='inline' style="text-decoration:none" href="#inline_content">	 	<%= link_to "", product, :itemprop => 'url',:class => "cart_button" %>
+	 <a class='inline' style="text-decoration:none" href="#inline_content">	
+	 	<%= link_to '', "#", :onclick=>"javascript: tb_show('', '#{product_path(product)}?receiver_id=51&placeValuesBeforeTB_=savedValues&TB_iframe=true&height=320&width=820&modal=false', tb_pathToImage);",  :class=>"thickbox cart_button" %>
 	 	
 	 </a>
 	 

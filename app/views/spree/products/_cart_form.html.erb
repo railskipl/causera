@@ -1,3 +1,4 @@
+ <%= stylesheet_link_tag    "style" %>
 <%= form_for :order, :url => populate_orders_url do |f| %>
   <div id="inside-product-cart-form" data-hook="inside_product_cart_form" itemprop="offers" itemscope itemtype="http://schema.org/Offer">
 
@@ -29,17 +30,21 @@
     <% if @product.price %>
       <div data-hook="product_price" class="columns five <% if !@product.has_variants? %> alpha <% else %> omega <% end %>">
         
-        <div id="product-price">
-          <h6 class="product-section-title"><%= t(:price) %></h6>
-          <div><span class="price selling" itemprop="price"><%= number_to_currency @product.price %></span></div>
+     <div style="padding:20px; border-top:1px solid #fff">
+
+<table width="100%" border="0" cellspacing="5" cellpadding="0">
+  <tr>
+    <td class="cart_line"><div class="cart_product"><%= @product.name %></div><div class="cart_price"> <%= number_to_currency @product.price %></div>
         </div>
 
         <div class="add-to-cart">
           <% if @product.has_stock? || Spree::Config[:allow_backorders] %>      
             <%= number_field_tag (@product.has_variants? ? :quantity : "variants[#{@product.master.id}]"),
               1, :class => 'title', :in => 1..@product.on_hand %>
-            <%= button_tag :class => 'large primary', :id => 'add-to-cart-button', :type => :submit do %>
-              <%= t(:Continue) %>
+            <tr>
+    		<td align="right" valign="top">
+            <%= button_tag :class => 'continue', :type => :submit do %>
+              <%= t(:" ") %>
             <% end %>
           <% else %>
             <%= content_tag('strong', t(:out_of_stock)) %>

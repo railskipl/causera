@@ -154,6 +154,7 @@
   paginated_products ||= products
 %>
 <% if products.empty? %>
+<% @variants = Spree::Variant.active.includes([:option_values,:images]).where(:product_id => product.id) %> 
   <%= t(:no_products_found) %>
 <% elsif params.key?(:keywords) %>
   <h6 class="search-results-title"><%= t(:search_results, :keywords => h(params[:keywords])) %></h6>
@@ -205,17 +206,32 @@
 	  	<%= truncate(product.description, :length => 100) %><a href="#"><img src="/assets/right_arrow.jpg" alt="" width="16" height="15" border="0" align="absmiddle" style="margin-top:" /></a></div>
      <div class="form_wrap">
      	<table width="100%" border="0" cellpadding="0" cellspacing="10">
+  <% if product.has_variants? %>
   <tr>
-    <td class="textfield_bg">  <select name="select" class="list">
-    <option>Select</option>
-  	
-  </select></td>
+    <td class="textfield_bg"><%= select("product", "product_id",
+Spree::OptionValue.find_all_by_option_type_id(935339117).collect{|p|[p.presentation,
+p.option_type_id]},:prompt => "Size")%>
+      
+    </td>
+  </tr>
+  <tr>
+    <td class="textfield_bg"><%= select("product", "product_id",
+Spree::OptionValue.find_all_by_option_type_id(643188970).collect{|p|[p.presentation,
+p.option_type_id]},:prompt => "Color")%></td>
+  </tr>
+  <% else %>
+  <tr>
+    <td class="textfield_bg"> <select name="select2" class="list">
+      <option>Size</option>
+    </select>
+    </td>
   </tr>
   <tr>
     <td class="textfield_bg"><select name="select2" class="list">
       <option>Color</option>
     </select></td>
   </tr>
+<% end %>
   <tr>
     <td align="center" valign="middle" class="price"> <%= number_to_currency product.price %>  </td>
   </tr>
@@ -249,7 +265,8 @@
 
 <table width="100%" border="0" cellspacing="5" cellpadding="0">
 <tr>
-<td class="cart_line"><div class="cart_product"><%= truncate(product.name, :length => 50) %></div>				<div class="cart_price"><%= number_to_currency product.price %> </div></td>
+<td class="cart_line"><div class="cart_product"><%= truncate(product.name, :length => 50) %></div>			
+		<div class="cart_price"><%= number_to_currency product.price %> </div></td>
 </tr>
 
 

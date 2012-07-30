@@ -153,6 +153,7 @@
   paginated_products = @searcher.retrieve_products if params.key?(:keywords)
   paginated_products ||= products
 %>
+
 <% if products.empty? %>
 <% @variants = Spree::Variant.active.includes([:option_values,:images]).where(:product_id => product.id) %> 
   <%= t(:no_products_found) %>
@@ -200,51 +201,67 @@
 	
 	</td>
           <td align="left" valign="top">
-	
+
 	<div class="discription">
 	  <h5><%= truncate(product.name, :length => 50) %></h5>
 	  	<%= truncate(product.description, :length => 100) %><a href="#"><img src="/assets/right_arrow.jpg" alt="" width="16" height="15" border="0" align="absmiddle" style="margin-top:" /></a></div>
      <div class="form_wrap">
      	<table width="100%" border="0" cellpadding="0" cellspacing="10">
-  <% if product.has_variants? %>
-  <tr>
-    <td class="textfield_bg"><%= select("product", "product_id",
-Spree::OptionValue.find_all_by_option_type_id(935339117).collect{|p|[p.presentation,
-p.option_type_id]},:prompt => "Size")%>
-      
-    </td>
-  </tr>
-  <tr>
-    <td class="textfield_bg"><%= select("product", "product_id",
-Spree::OptionValue.find_all_by_option_type_id(643188970).collect{|p|[p.presentation,
-p.option_type_id]},:prompt => "Color")%></td>
-  </tr>
-  <% else %>
-  <tr>
-    <td class="textfield_bg"> <select name="select2" class="list">
-      <option>Size</option>
-    </select>
-    </td>
-  </tr>
-  <tr>
-    <td class="textfield_bg"><select name="select2" class="list">
-      <option>Color</option>
-    </select></td>
-  </tr>
-<% end %>
-  <tr>
+     		<%= form_for :order, :url => populate_orders_url do |f| %>
+     		 <% if product.has_variants? %>
+      <div id="product-variants" class="columns five alpha">
+        <h6 class="product-section-title"><%= t(:variants) %></h6>
+        <ul>
+          <% has_checked = false
+          product.variants.active.each_with_index do |v,index|
+            next if v.option_values.empty? || (!v.in_stock && !Spree::Config[:show_zero_stock_products])
+            checked = !has_checked && (v.in_stock || Spree::Config[:allow_backorders])
+            has_checked = true if checked %>
+            <li>
+              <%= radio_button_tag "products[#{product.id}]", v.id, checked, :disabled => !v.in_stock && !Spree::Config[:allow_backorders] %>
+              <label for="<%= ['products', product.id, v.id].join('_') %>">
+                <span class="variant-description">
+                  <%= variant_options v %>
+                </span>
+                <% if variant_price_diff v %>
+                  <span class="price diff"><%= variant_price_diff v %></span>
+                <% end %>
+              </label>
+            </li>
+          <% end%>
+        </ul>
+      </div>
+    <% end%>
+      <% if product.price %>
+      <div data-hook="product_price" class="columns five <% if !product.has_variants? %> alpha <% else %> omega <% end %>">
+        
+ 
+        <div class="add-to-cart">
+          <% if product.has_stock? || Spree::Config[:allow_backorders] %>      
+            <%= hidden_field_tag (product.has_variants? ? :quantity : "variants[#{product.master.id}]"),
+              1, :class => 'title', :in => 1..product.on_hand %>
+            <tr>
     <td align="center" valign="middle" class="price"> <%= number_to_currency product.price %>  </td>
   </tr>
-  <tr>
-    <td align="center" valign="top">
-	 <a class='inline' style="text-decoration:none" href="#inline_content">	
-	 	<%= link_to '', "#", :onclick=>"javascript: tb_show('', '#{product_path(product)}?receiver_id=51&placeValuesBeforeTB_=savedValues&TB_iframe=true&height=320&width=820&modal=false', tb_pathToImage);",  :class=>"thickbox cart_button" %>
-	 	
-	 </a>
-	 
-   
-   </td>
-  </tr>
+            <tr>
+    		<td align="right" valign="top">
+            <%= button_tag :class=>"thickbox cart_button", :type => :submit do %>
+              <%= t(:" ") %>
+            <% end %>
+          <% else %>
+            <%= content_tag('strong', t(:out_of_stock)) %>
+          <% end %>
+        </div>
+
+      </div>
+    <% end %> 
+    
+    
+    
+    
+<% end %>
+ 
+  
 </table>
 
 		

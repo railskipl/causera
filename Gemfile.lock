@@ -1,5 +1,5 @@
 GIT
-  remote: git@github.com:jsqu99/spree_flexi_variants.git
+  remote: git://github.com/jsqu99/spree_flexi_variants.git
   revision: 389ab11b20753e25af228a4a0d59c46ec2df09a2
   specs:
     spree_flexi_variants (1.0.0)

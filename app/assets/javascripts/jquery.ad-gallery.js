@@ -623,9 +623,9 @@
         };
         var desc = '';
         if(image.desc.length) {
-          desc = '<span>'+ image.desc +'</span>';
+         
         };
-        desc = $('<p class="ad-image-description">'+ title + desc +'</p>');
+        desc = $('<p class="ad-image-description">' + desc +'</p>');
       };
       return desc;
     },

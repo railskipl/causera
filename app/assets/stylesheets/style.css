@@ -58,7 +58,7 @@ h2{ font-size:20px; text-align:center; color:#333333}
 .product_box{
 width:669px;
 height:auto;
-float:left; padding:10px;
+float:left; padding:10px 10px 0 10px;
 background:#fff;
 border-radius: 5px 5px 5px 5px;
 border-right: 2px solid #c8c8c8;

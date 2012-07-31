@@ -12,14 +12,6 @@ module Spree
       @products = @searcher.retrieve_products
       respond_with(@products)
       
-      @variants = Spree::Variant.active.includes([:option_values, :images]).where(:product_id => @product.id)
-      @product_properties = Spree::ProductProperty.includes(:property).where(:product_id => @product.id)
-
-      referer = request.env['HTTP_REFERER']
-
-      if referer && referer.match(HTTP_REFERER_REGEXP)
-        @taxon = Taxon.find_by_permalink($1)
-      end
 
     end
 

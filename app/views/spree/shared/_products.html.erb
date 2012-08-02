@@ -1,7 +1,7 @@
-<%= stylesheet_link_tag 'style', 'jquery.ad-gallery','colorbox','lightbox','facebox' %>
+<%= stylesheet_link_tag 'style', 'jquery.ad-gallery','colorbox','facebox' %>
 
   
-<%= javascript_include_tag "jquery.ad-gallery.js","jquery.colorbox.js","jquery.colorbox-min.js", "lightbox1",'facebox' %>
+<%= javascript_include_tag "jquery.ad-gallery.js","jquery.colorbox.js","jquery.colorbox-min.js",'facebox' %>
 <script language="javascript">
 jQuery(document).ready(function($) {
     $('a[rel*=facebox]').facebox()
@@ -50,32 +50,7 @@ jQuery(document).ready(function($) {
   });
   </script>
   
-  	<script>
-			$(document).ready(function(){
-				//Examples of how to assign the ColorBox event to elements
-				$(".group1").colorbox({rel:'group1'});
-				$(".group2").colorbox({rel:'group2', transition:"fade"});
-				$(".group3").colorbox({rel:'group3', transition:"none", width:"75%", height:"75%"});
-				$(".group4").colorbox({rel:'group4', slideshow:true});
-				$(".ajax").colorbox();
-				$(".youtube").colorbox({iframe:true, innerWidth:425, innerHeight:344});
-				$(".iframe").colorbox({iframe:true, width:"80%", height:"80%"});
-				$(".inline").colorbox({inline:true, width:"50%"});
-				$(".callbacks").colorbox({
-					onOpen:function(){ alert('onOpen: colorbox is about to open'); },
-					onLoad:function(){ alert('onLoad: colorbox has started to load the targeted content'); },
-					onComplete:function(){ alert('onComplete: colorbox has displayed the loaded content'); },
-					onCleanup:function(){ alert('onCleanup: colorbox has begun the close process'); },
-					onClosed:function(){ alert('onClosed: colorbox has completely closed'); }
-				});
-				
-				//Example of preserving a JavaScript event for inline calls.
-				$("#click").click(function(){ 
-					$('#click').css({"background-color":"#f00", "color":"#fff", "cursor":"inherit"}).text("Open this window again and this message will still be here.");
-					return false;
-				});
-			});
-		</script>
+ 
 		<body>
   <div align="center" id="maindiv">
 	
@@ -174,7 +149,6 @@ jQuery(document).ready(function($) {
 
   <% reset_cycle('default') %>
   <% products.each do |product| %>
-<%= variant1 = Spree::Variant.find_by_product_id(product.id).id %> 
 
 	 <div class="product_box">
 	 	

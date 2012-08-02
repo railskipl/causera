@@ -1,7 +1,15 @@
-<%= stylesheet_link_tag 'style', 'jquery.ad-gallery','colorbox','lightbox' %>
+<%= stylesheet_link_tag 'style', 'jquery.ad-gallery','colorbox','lightbox','facebox' %>
 
   
-<%= javascript_include_tag "jquery.ad-gallery.js","jquery.colorbox.js","jquery.colorbox-min.js", "lightbox1" %>
+<%= javascript_include_tag "jquery.ad-gallery.js","jquery.colorbox.js","jquery.colorbox-min.js", "lightbox1",'facebox' %>
+<script language="javascript">
+jQuery(document).ready(function($) {
+    $('a[rel*=facebox]').facebox()
+    
+});
+
+    
+</script>
   <script type="text/javascript">
   $(function() {
     $('img.image1').data('ad-desc', 'Whoa! This description is set through elm.data("ad-desc") instead of using the longdesc attribute.<br>And it contains <strong>H</strong>ow <strong>T</strong>o <strong>M</strong>eet <strong>L</strong>adies... <em>What?</em> That aint what HTML stands for? Man...');
@@ -156,6 +164,7 @@
 
 <% if products.empty? %>
 <% @variants = Spree::Variant.active.includes([:option_values,:images]).where(:product_id => product.id) %> 
+
   <%= t(:no_products_found) %>
 <% elsif params.key?(:keywords) %>
   <h6 class="search-results-title"><%= t(:search_results, :keywords => h(params[:keywords])) %></h6>
@@ -165,6 +174,7 @@
 
   <% reset_cycle('default') %>
   <% products.each do |product| %>
+<%= variant1 = Spree::Variant.find_by_product_id(product.id).id %> 
 
 	 <div class="product_box">
 	 	
@@ -207,7 +217,7 @@
 	  	<%= truncate(product.description, :length => 100) %><a href="#"><img src="/assets/right_arrow.jpg" alt="" width="16" height="15" border="0" align="absmiddle" style="margin-top:" /></a></div>
      <div class="form_wrap">
      	<table width="100%" border="0" cellpadding="0" cellspacing="10">
-     		<%= form_for :order, :url => populate_orders_url do |f| %>
+<%= form_for :order, :url => populate_orders_url ,:html => { :class => "ankit#{product.id}"},:remote => true do |f| %>
      	
       <% if product.price %>
       <div data-hook="product_price" class="columns five <% if !product.has_variants? %> alpha <% else %> omega <% end %>">
@@ -262,12 +272,13 @@
     </select>
 
 <% end %> 
-  
+
             <tr>
     		<td align="right" valign="top">
-            <%= button_tag :class=>"thickbox cart_button", :type => :submit do %>
-              <%= t(:" ") %>
-            <% end %>
+    			<a href="/cart"  onclick="$('.ankit<%= product.id %>').submit();" rel = "facebox"  >Add to cart</a>
+
+
+          
           <% else %>
             <%= content_tag('strong', t(:out_of_stock)) %>
           <% end %>

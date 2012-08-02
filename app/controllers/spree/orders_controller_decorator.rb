@@ -26,7 +26,8 @@ module Spree
       fire_event('spree.cart.add')
       fire_event('spree.order.contents_changed')
 
-      redirect_to cart_path
+    
+
     end
 
   end

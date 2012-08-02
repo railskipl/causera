@@ -12,7 +12,6 @@ gem 'execjs'
 gem 'rmagick'
 gem 'carrierwave'
 
-gem 'spree_flexi_variants', :git=>"git://github.com/jsqu99/spree_flexi_variants.git"
 
 
 
@@ -52,3 +51,8 @@ end
 gem 'spree'
 gem 'spree_usa_epay'
 gem 'spree_skrill'
+
+gem 'spree_flexi_variants', :git=>"git://github.com/jsqu99/spree_flexi_variants.git"
+
+
+

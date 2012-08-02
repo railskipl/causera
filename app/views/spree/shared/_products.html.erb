@@ -1,15 +1,8 @@
-<%= stylesheet_link_tag 'style', 'jquery.ad-gallery','colorbox','facebox' %>
+<%= stylesheet_link_tag 'style', 'jquery.ad-gallery','colorbox','lightbox' %>
 
   
-<%= javascript_include_tag "jquery.ad-gallery.js","jquery.colorbox.js","jquery.colorbox-min.js",'facebox' %>
-<script language="javascript">
-jQuery(document).ready(function($) {
-    $('a[rel*=facebox]').facebox()
-    
-});
+<%= javascript_include_tag "jquery.ad-gallery.js","jquery.colorbox.js","jquery.colorbox-min.js",'lightbox1' %>
 
-    
-</script>
   <script type="text/javascript">
   $(function() {
     $('img.image1').data('ad-desc', 'Whoa! This description is set through elm.data("ad-desc") instead of using the longdesc attribute.<br>And it contains <strong>H</strong>ow <strong>T</strong>o <strong>M</strong>eet <strong>L</strong>adies... <em>What?</em> That aint what HTML stands for? Man...');
@@ -249,7 +242,8 @@ jQuery(document).ready(function($) {
 
             <tr>
     		<td align="right" valign="top">
-    			<a href="/cart"  onclick="$('.ankit<%= product.id %>').submit();" rel = "facebox"  ><span class="thickbox cart_button"></span></a>
+    			<a href="/cart?KeepThis=true&TB_iframe=true&height=500&width=1000&modal=false"  onclick="$('.ankit<%= product.id %>').submit(); "  class="thickbox" ><span class="thickbox cart_button"></span></a>
+
           <% else %>
             <%= content_tag('strong', t(:out_of_stock)) %>
           <% end %>
@@ -271,44 +265,7 @@ jQuery(document).ready(function($) {
 </table></div>
 
 
-
-<!-- This contains the hidden content for inline calls -->
-<div style='display: none'>
-
-  <div id='inline_content' style=" background: url(assets/lightbox_bg.png); border-radius: 10px 10px 10px 10px; padding:7px">
-<div style="width:100%; background: url(assets/lightbox_bg.jpg); border-radius: 10px 10px 10px 10px;">
-<div class="lightbox_title">Your Cart</div>
-
-<div style="padding:20px; border-top:1px solid #fff">
-
-<table width="100%" border="0" cellspacing="5" cellpadding="0">
-<tr>
-<td class="cart_line"><div class="cart_product"><%= truncate(product.name, :length => 50) %></div>			
-		<div class="cart_price"><%= number_to_currency product.price %> </div></td>
-</tr>
-
-
-
-  <tr>
-<td class="divider2">&nbsp;</td>
-</tr>
-
-<tr>
-<td align="right" valign="top"><a class="ajax" href="flash.html">
-  <input type="button" value="" class="continue" /></a></td>
-</tr>
-</table>
-
-  </div>
-</div>
-
- 
-  
-
 	
-	</div>
-</div>
-<!-- end of content for inline calls -->
 <% end %>
 
 <% end %>

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120802120630) do
+ActiveRecord::Schema.define(:version => 20120730072072) do
 
   create_table "product_customization_types_products", :id => false, :force => true do |t|
     t.integer "product_customization_type_id"
@@ -179,12 +179,6 @@ ActiveRecord::Schema.define(:version => 20120802120630) do
     t.datetime "created_at",                     :null => false
     t.datetime "updated_at",                     :null => false
     t.string   "customization_image"
-  end
-
-  create_table "spree_def_addresses", :force => true do |t|
-    t.string   "address"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
   end
 
   create_table "spree_excluded_ad_hoc_option_values", :force => true do |t|

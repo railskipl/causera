@@ -275,10 +275,7 @@ jQuery(document).ready(function($) {
 
             <tr>
     		<td align="right" valign="top">
-    			<a href="/cart"  onclick="$('.ankit<%= product.id %>').submit();" rel = "facebox"  >Add to cart</a>
-
-
-          
+    			<a href="/cart"  onclick="$('.ankit<%= product.id %>').submit();" rel = "facebox"  ><span class="thickbox cart_button"></span></a>
           <% else %>
             <%= content_tag('strong', t(:out_of_stock)) %>
           <% end %>

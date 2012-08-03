@@ -1,58 +1,11 @@
 <div class="columns omega six" data-hook="shipping_fieldset_wrapper">
 <fieldset id="shipping" data-hook>
 	
+<%= form.fields_for :bill_address do |bill_form| %>
+<%= bill_form.radio_button :address1, DefAddress.first.address %> <%= DefAddress.first.address %>
 
-  <%= form.fields_for :ship_address do |ship_form| %>
-    <legend><%= t(:shipping) %></legend>
-   
-    <div class="inner" data-hook="shipping_inner">
-
-      <p class="field" id="saddress1">
-        <%= ship_form.label :address1, t(:street_address) %><span class="req">*</span><br />
-        <%= ship_form.text_field :address1, :class => 'required' %>
-      </p>
-    
-      <p class="field" id="scity">
-        <%= ship_form.label :city, t(:city) %><span class="req">*</span><br />
-        <%= ship_form.text_field :city, :class => 'required' %>
-      </p>
-
- <p class="field" id="scountry" style="padding: 0px;">
-        
-        <span id="scountry">
-          <%= ship_form.hidden_field :country_id, :id => '214' %>
-        </span>
-      </p>
-      <% if Spree::Config[:address_requires_state] %>
-        <p class="field" id="sstate">
-          <% have_states = !@order.ship_address.country.states.empty? %>
-          <%= ship_form.label :state, t(:state) %><span class="req">*</span><br />
-        
-          <% state_elements = [
-             ship_form.collection_select(:state_id, @order.ship_address.country.states,
-                                :id, :name,
-                                {:include_blank => true},
-                                {:class => have_states ? 'required' : 'hidden',
-                                :disabled => !have_states}) +
-             ship_form.text_field(:state_name,
-                                :class => !have_states ? 'required' : 'hidden',
-                                :disabled => have_states)
-             ].join.gsub('"', "'").gsub("\n", "")
-          %>
-          <%= javascript_tag do -%>
-            document.write("<%== state_elements %>");
-          <% end %>
-        </p>
-      <% end %>
-
-      <p class="field" id="szipcode">
-        <%= ship_form.label :zipcode, t(:zip) %><span class="req">*</span><br />
-        <%= ship_form.text_field :zipcode, :class => 'required' %>
-      </p>
- 
-    
-    </div>
-  <% end %>
+<% end %>
+  
 </fieldset>
 </div>
 

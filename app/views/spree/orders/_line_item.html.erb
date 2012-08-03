@@ -1,0 +1,20 @@
+
+ <tr>
+ 
+       <td class="cart_line"><div class="cart_product">
+    <%= truncate(variant.product.description, :length => 50, :omission => "...") %></div>
+
+  <div class="cart_price" >
+    <%= number_to_currency line_item.price %></div>
+</td>
+  <td data-hook="cart_item_quantity">
+    <%= item_form.hidden_field :quantity, :min => 0, :class => "line_item_quantity", :size => 5 %>
+  </td>
+  </tr>
+  <tr>
+<tr>
+    <td class="cart_line"><div class="cart_product">Tax (California)	</div>				<div class="cart_price">$<%= @tax = 	6.50 %></div></td>
+  </tr>
+  <td class="cart_line2"><div class="cart_total">Total	</div>				<div class="cart_price"> <%= number_to_currency line_item.price + @tax %></div></td>
+
+</tr>

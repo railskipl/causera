@@ -1,7 +1,5 @@
 <% @body_id = 'cart' %>
 
-<center><h1><%= t(:shopping_cart) %></h1></centet>
-
 <% if @order.line_items.empty? %>
 
   <div data-hook="empty_cart">
@@ -19,25 +17,19 @@
         </div>
 
         <div class="links columns ten alpha" data-hook="cart_buttons">
-          <%= button_tag :class => 'primary', :id => 'update-button' do %>
-            <%= t(:update) %>
-          <% end %>
-         <%= link_to t(:checkout), checkout_path, :class => 'button checkout primary', :id => 'checkout-link' %>
+          
+         <a href='/checkout' style="background:url(../assets/continue.jpg) no-repeat; border:0; border-width:0; cursor:pointer; width:121px; height:35px;padding: 7px 87px 36px 35px; float: right;" id = 'checkout-link' ></a>
         </div>
 
-        <div id="subtotal" data-hook class="columns six omega">
-          <h5><%= t(:subtotal) %>: <span class="order-total"><%= order_subtotal(@order) %></span></h5>
-        </div>
+       
 
       </div>
     <% end %>
   </div>
-  <div id="empty-cart" data-hook>
-  <%= form_tag empty_cart_path, :method => :put do %>
+   <%= form_tag empty_cart_path, :method => :put do %>
     <p id="clear_cart_link" data-hook>
       <%= submit_tag t(:empty_cart), :class => 'button' %>
-      
+     
     </p>
   <% end %>
-  </div>
 <% end %>

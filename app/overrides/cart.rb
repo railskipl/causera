@@ -3,8 +3,4 @@ Deface::Override.new(:virtual_path  => "spree/products/show",
                      :name          => "cart1",
                      :partial => "spree/shared/products")
                      
-
-                     
-
-
                      

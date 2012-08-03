@@ -1,0 +1,14 @@
+<%= render :partial => 'spree/shared/error_messages', :locals => { :target => @order } %>
+<table id="cart-detail" data-hook>
+
+  <tbody id="line_items" data-hook>
+  	<div style="width:100%; background: url(images/lightbox_bg.jpg); border-radius: 10px 10px 10px 10px;">
+ <div class="lightbox_title">Your Cart</div>
+
+    <%= order_form.fields_for :line_items do |item_form| %>
+      <%= render :partial => 'line_item', :locals => { :variant => item_form.object.variant, :line_item => item_form.object, :item_form => item_form } %>
+    <% end %>
+    </div>
+    </div>
+  </tbody>
+</table>

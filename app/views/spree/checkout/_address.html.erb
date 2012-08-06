@@ -1,14 +1,26 @@
 <div class="columns omega six" data-hook="shipping_fieldset_wrapper">
 <fieldset id="shipping" data-hook>
-	
+<div style="width:100%; background: url(images/lightbox_bg.jpg); border-radius: 10px 10px 10px 10px;">
+ <div class="lightbox_title2">Shipping</div>
+ 
 <%= form.fields_for :bill_address do |bill_form| %>
+<table width="100%" border="0" cellspacing="5" cellpadding="0">
+  
+    <tr>
+      <td align="left" valign="middle" class="cart_line"><label>
 <%= bill_form.radio_button :address1, SpreeDefAddress.first.address,:checked => true %> <%= SpreeDefAddress.first.address %>
-
+  </label></td></tr>
 <% end %>
   
 </fieldset>
 </div>
 
-<div class="form-buttons" data-hook="buttons">
-  <%= submit_tag t(:save_and_continue), :class => 'continue button primary' %>
-</div>
+ <tr>
+    <td colspan="3" align="left" valign="middle" class="cart_line">
+
+      <input type="submit" name="Submit" value="" style="background:url(../assets/continue.jpg) repeat-x; border:0; border-width:0; cursor:pointer; width:121px; height:35px;" />
+  	</td>
+    </tr>
+</table>
+
+  </div>  </div>

@@ -1,0 +1,33 @@
+<fieldset id="payment" data-hook>
+<div style="width:100%; background: url(images/lightbox_bg.jpg); border-radius: 10px 10px 10px 10px;">
+  <div class="lightbox_title3">Payment Info</div>
+  <div data-hook="checkout_payment_step">
+    <% @order.available_payment_methods.each do |method| %>
+    <p>
+      <label>
+        <%= radio_button_tag "order[payments_attributes][][payment_method_id]", method.id, method == @order.payment_method %>
+        <%= t(method.name, :scope => :payment_methods, :default => method.name) %>
+      </label>
+    </p>
+    <% end %>
+
+    <ul id="payment-methods" data-hook>
+      <% @order.available_payment_methods.each do |method| %>
+        <li id="payment_method_<%= method.id %>" class="<%= 'last' if method == @order.available_payment_methods.last %>" data-hook>
+          <fieldset>
+            <%= render :partial => "spree/checkout/payment/#{method.method_type}", :locals => { :payment_method => method } %>
+          </fieldset>
+        </li>
+      <% end %>
+    </ul>
+    <br style="clear:both;" />
+    <div data-hook="coupon_code_field" data-hook></div>
+  </div>
+</fieldset>
+	<div style="width:auto; float:left; height:auto"><a href="#"><img src="/assets/visa.jpg" alt="" width="46" height="25" border="0" /></a> <a href="#"><img src="/assets/m_card.jpg" alt="" width="46" height="25" border="0" /></a>
+	  <a href="#"><img src="/assets/amex.jpg" alt="" width="46" height="25" border="0" /></a> <a href="#"><img src="/assets/paypal.jpg" alt="" width="66" height="25" border="0" /></a></div>
+<br><br>
+<div class="form-buttons" data-hook="buttons">
+      <input type="submit" name="Submit" value="" style="background:url(../assets/purchase_bg.jpg) repeat-x; border:0; border-width:0; cursor:pointer; width:121px; height:35px;" />
+  <script>disableSaveOnClick();</script>
+</div>

@@ -13,6 +13,12 @@
 
 ActiveRecord::Schema.define(:version => 20120803063139) do
 
+  create_table "def_adds", :force => true do |t|
+    t.string   "address"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
   create_table "product_customization_types_products", :id => false, :force => true do |t|
     t.integer "product_customization_type_id"
     t.integer "product_id"

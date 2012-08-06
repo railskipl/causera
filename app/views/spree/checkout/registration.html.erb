@@ -1,0 +1,34 @@
+
+<%= render :partial => 'spree/shared/error_messages', :locals => { :target => @user } %>
+
+<div id="registration" data-hook>
+  <div id="account" class="columns alpha eight">
+    <!-- TODO: add partial with registration form -->
+  </div>
+  <% if Spree::Config[:allow_guest_checkout] %>
+  <div style="width:100%; background: url(assets/lightbox_bg.jpg); border-radius: 10px 10px 10px 10px;">
+   <div class="lightbox_title">Checkout as a Guest </div>
+   <div style="padding:20px; border-top:1px solid #fff">
+      <%= render :partial => 'spree/shared/error_messages', :locals => { :target => @order } %>
+
+      <%= form_for @order, :url => update_checkout_registration_path, :method => :put, :html => { :id => 'checkout_form_registration' } do |f| %>
+   <table width="100%" border="0" cellspacing="5" cellpadding="0">
+  <tr>
+    <td align="right" valign="middle" class="cart_line">Email</td>
+     <td align="left" valign="top" class="cart_line"><label>
+     	  <%= f.email_field :email, :class => 'list5'   %>
+  
+    </label></td>
+  </tr>
+            <tr>
+    <td align="right" valign="middle" class="cart_line">&nbsp;</td>
+    <td align="left" valign="top" class="cart_line"><label>
+      <input type="submit" name="Submit" value="" style="background:url(../assets/continue.jpg) repeat-x; border:0; border-width:0; cursor:pointer; width:121px; height:35px;" />
+&nbsp;    </label></td>
+    </tr>
+</table>
+
+      <% end %>
+    </div>
+  <% end %>
+</div>

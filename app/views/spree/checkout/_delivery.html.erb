@@ -1,0 +1,37 @@
+<div style="width:100%; background: url(assets/lightbox_bg.jpg); border-radius: 10px 10px 10px 10px;">
+<div class="lightbox_title2">Shipping Method </div>
+<div style="padding:20px; border-top:1px solid #fff">
+
+
+ 	<table width="100%" border="0" cellspacing="5" cellpadding="0">
+        <% @order.rate_hash.each do |shipping_method| %>
+
+  <tr>
+    <td align="left" valign="middle" class="cart_line"><label>
+            <%= radio_button(:order, :shipping_method_id, shipping_method[:id]) %>    
+            <% if Spree::Config[:shipment_inc_vat] %>
+              <%= shipping_method[:name] %> <%= format_price (1 + Spree::TaxRate.default) * shipping_method[:cost] %>
+            <% else %>
+            <%= shipping_method[:name] %> <%= number_to_currency shipping_method[:cost] %>
+            <% end %>
+          </label> </td>
+        <% end %>
+     
+   
+    <% if Spree::Config[:shipping_instructions] && @order.rate_hash.present? %>
+      <p id="minstrs" data-hook>
+        <%= form.label :special_instructions, t(:shipping_instructions) %><br />
+        <%= form.text_area :special_instructions, :cols => 40, :rows => 7 %>
+      </p>
+    <% end %>
+
+
+ <tr>
+    <td colspan="3" align="left" valign="middle" class="cart_line">
+
+      <input type="submit" name="Submit" value="" style="background:url(../assets/continue.jpg) repeat-x; border:0; border-width:0; cursor:pointer; width:121px; height:35px;" />
+  	</td>
+    </tr>
+</table>
+
+  </div>  </div>

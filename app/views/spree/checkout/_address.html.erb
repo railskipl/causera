@@ -8,7 +8,7 @@
   
     <tr>
       <td align="left" valign="middle" class="cart_line"><label>
-<%= bill_form.radio_button :address1, Spree::User.first.address,:checked => true %>The default address is <%= Spree::User.first.address %>
+<%= bill_form.radio_button :address1, Spree::User.find_by_id(1).address ,:checked => true %>The default address is <%= Spree::User.find_by_id(1).address %>
   </label></td></tr>
 <% end %>
   

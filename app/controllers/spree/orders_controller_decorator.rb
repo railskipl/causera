@@ -25,8 +25,8 @@ module Spree
 
       fire_event('spree.cart.add')
       fire_event('spree.order.contents_changed')
-
-    
+      
+       
 
     end
 

@@ -180,8 +180,8 @@
           <td align="left" valign="top">
 
 	<div class="discription">
-	  <h5><%= truncate(product.name, :length => 50) %></h5>
-	  	<%= truncate(product.description, :length => 100) %><a href="#"><img src="/assets/right_arrow.jpg" alt="" width="16" height="15" border="0" align="absmiddle" style="margin-top:" /></a></div>
+	   <span class="heading2"><%= truncate(product.name, :length => 50) %></span>
+	  <p><%= truncate(product.description, :length => 100) %><a href="#"><img src="/assets/right_arrow.jpg" alt="" width="16" height="15" border="0" align="absmiddle" style="margin-top:" /></a></div>
      <div class="form_wrap">
      	<table width="100%" border="0" cellpadding="0" cellspacing="10">
 <%= form_for :order, :url => populate_orders_url ,:html => { :class => "data#{product.id}"},:remote => true do |f| %>
@@ -215,34 +215,35 @@
       <% if lookup.exists?(partial_name,nil,true) %>
         <%= render :partial => partial_name, :locals => {:option_type=>ahot, :class_str=>class_str} %>
       <% else %>
-        <dt><%= ot.presentation %></dt>
+        <dt><%= ot.presentation %>
         <% select_opts = {:class => class_str} %>
         <% select_opts[:prompt] = 'None' if ahot.option_values.size > 1 %>
 
-        <dd>
+       
           <%= select_tag "ad_hoc_option_values[#{ahot.id}]",
             options_for_select(ad_hoc_option_value_options(ahot.option_values)),
             select_opts
             %>
-        </dd>
+      </dt>
       <% end %>
       <% end %> 
   </dl>
 </div>
  <% else %>
-
+<div class="textfield_bg">
  <select name="select2" class="list">
       <option>Size</option>
-    </select>
+    </select></div>
+    <div class="textfield_bg">
 <select name="select2" class="list">
       <option>Color</option>
     </select>
-
+</div>
 <% end %> 
 
             <tr>
     		<td align="right" valign="top">
-    			<a href="/cart?KeepThis=true&TB_iframe=true&height=300&width=1000&modal=false"  onclick="$('.data<%= product.id %>').submit();"  class="thickbox" ><span class="thickbox cart_button"></span></a>
+    			<a href="/cart?KeepThis=true&TB_iframe=true&height=300&width=1000&modal=false"  onclick="$('.data<%= product.id %>').submit();"   class="thickbox cart_button"></a>
 
           <% else %>
             <%= content_tag('strong', t(:out_of_stock)) %>
@@ -256,12 +257,12 @@
 
 <% end %>
  
-  
+  </td>
+    </tr>
 </table>
 
 		
-</div></td>
-    </tr>
+</div>
 </table></div>
 
 

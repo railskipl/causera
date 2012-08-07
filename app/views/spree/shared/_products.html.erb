@@ -145,7 +145,7 @@
 
 	 <div class="product_box">
 	 	
-	  <table width="100%" border="0" cellspacing="0" cellpadding="0">
+	  <table width="100%" border="0" cellspacing="" cellpadding="0">
   <tr>
     <td width="40%" align="left" valign="top">
 	
@@ -201,7 +201,7 @@
       <% if product.ad_hoc_option_types && !product.ad_hoc_option_types.empty? %>
 <% lookup=ActionView::LookupContext.new(ActionController::Base.view_paths, {:formats => [:html]}) %>
 
-<div id="ad_hoc_options">
+	<div id="ad_hoc_options" class="textfield_bg1">
   <dl>
     <% product.ad_hoc_option_types.each do |ahot| %>
       <% ot=ahot.option_type %>
@@ -215,16 +215,17 @@
       <% if lookup.exists?(partial_name,nil,true) %>
         <%= render :partial => partial_name, :locals => {:option_type=>ahot, :class_str=>class_str} %>
       <% else %>
-        <dt><%= ot.presentation %>
+ 
         <% select_opts = {:class => class_str} %>
-        <% select_opts[:prompt] = 'None' if ahot.option_values.size > 1 %>
+        <% select_opts[:prompt] =  ot.presentation if ahot.option_values.size > 1 %>
 
        
           <%= select_tag "ad_hoc_option_values[#{ahot.id}]",
             options_for_select(ad_hoc_option_value_options(ahot.option_values)),
             select_opts
             %>
-      </dt>
+  <br/><br/>
+  
       <% end %>
       <% end %> 
   </dl>
@@ -233,8 +234,10 @@
 <div class="textfield_bg">
  <select name="select2" class="list">
       <option>Size</option>
-    </select></div>
-    <div class="textfield_bg">
+    </select>
+
+  <br>  <br>  
+
 <select name="select2" class="list">
       <option>Color</option>
     </select>

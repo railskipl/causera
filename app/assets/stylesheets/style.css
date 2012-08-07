@@ -104,6 +104,7 @@ box-shadow:5px 5px 5px #333333; }
 
 select, input, textarea {
     font-size: 1em;
+    width:120px; height:auto; border:1px solid #bbbbbb; background:url(/assets/field_bg.jpg) repeat-x bottom left; padding:2px 2px 2px 5px
   }
 
   h2 {
@@ -156,7 +157,9 @@ select, input, textarea {
       #descriptions .ad-image-description .ad-description-title {
         display: block;
       }
-.textfield_bg{ background:#e7e7e7; border-radius: 5px 5px 5px 5px; padding:10px}
+.textfield_bg{ background:#e7e7e7; border-radius: 5px 5px 5px 5px; padding:20px 11px 18px 13px; }
+
+.textfield_bg1{ background:#e7e7e7; border-radius: 5px 5px 5px 5px; padding:8px 8px 0 8px; margin:2px;}
 
 #footer{ width:960px; height:auto; padding:20px 0 0 0; clear:left; margin:20px 0 20px 0; border-top:1px solid #c9c9c9}
 

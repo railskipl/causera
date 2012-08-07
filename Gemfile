@@ -53,4 +53,3 @@ gem 'spree_skrill'
 gem 'spree_flexi_variants', :git=>"git://github.com/jsqu99/spree_flexi_variants.git"
 
 
-gem 'spree_heroku', :git => 'git://github.com/joneslee85/spree-heroku.git'

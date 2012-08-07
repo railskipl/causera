@@ -8,7 +8,7 @@ gem 'rails', '3.2.3'
 
 gem 'therubyracer'
 gem 'execjs'
-gem 'sqlite3'
+#gem 'sqlite3'
 gem 'rmagick'
 gem 'carrierwave'
 

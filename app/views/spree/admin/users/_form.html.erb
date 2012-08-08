@@ -16,8 +16,43 @@
     <%= f.password_field :password_confirmation %>
     <%= f.error_message_on :password_confirmation %>
   <% end %>
+   <%= f.field_container :fname do %>
+    <%= f.label :fname, t(:first_name) %><br />
+    <%= f.text_field :fname %>
+  <% end %>
+  <%= f.field_container :lname do %>
+    <%= f.label :lname, t(:last_name) %><br />
+    <%= f.text_field :lname %>
+  <% end %>
    <%= f.field_container :address do %>
     <%= f.label :address, t(:address) %><br />
     <%= f.text_field :address %>
   <% end %>
+  <%= f.field_container :phone do %>
+    <%= f.label :phone, t(:phone) %><br />
+    <%= f.text_field :phone %>
+  <% end %>
+  <%= f.field_container :zip do %>
+    <%= f.label :zip, t(:zip) %><br />
+    <%= f.text_field :zip %>
+  <% end %>
+  <p class="field" id="scity">
+        <%= f.label :city, t(:city) %><span class="req">*</span><br />
+        <%= f.text_field :city, :class => 'required' %>
+      </p>
+
+      <p class="field" id="scountry">
+        <%= f.label :country_id, t(:country) %><span class="req">*</span><br />
+        <span id="scountry">
+ 		<%= f.collection_select :country_id, Spree::Country.all(:order => "id"), :id, :iso_name, :selected => '214' %>        </span>
+      </p>
+  
+       <p class="field" >
+        <%= f.label :state_id, t(:state) %><span class="req">*</span><br />
+        <span id="scountry">
+    <%= f.collection_select :state_id, Spree::State.all(:order => "name"), :id, :name %>
+        </span>
+      </p>
+
+  
 </div>

@@ -1,26 +1,65 @@
 <div class="columns omega six" data-hook="shipping_fieldset_wrapper">
-<fieldset id="shipping" data-hook style="border:0;">
-<div style="width:100%; background: url(assets/lightbox_bg.jpg); border-radius: 0 0 0 0;">
+<fieldset id="shipping" data-hook style="border: 0;">
+<div style="width:100%; background: url(assets/lightbox_bg.jpg); border-radius: 10px 10px 10px 10px;">
  <div class="lightbox_title2">Shipping Address</div>
- 
-<%= form.fields_for :bill_address do |bill_form| %>
-<table width="100%" border="0" cellspacing="5" cellpadding="0">
+<div class="columns omega six" data-hook="shipping_fieldset_wrapper">
+<fieldset id="shipping" data-hook style="border: 0;">
+  <%= form.fields_for :ship_address do |ship_form| %>
+
+    <p class="field checkbox" data-hook="use_billing" >
+      <%= check_box_tag 'order[use_billing]', '1', (!(@order.bill_address.empty? && @order.ship_address.empty?) && @order.bill_address.same_as?(@order.ship_address)) %> 
+      <%= label_tag :order_use_billing, t(:use_billing_address), :id => 'use_billing' %>
+    </p>
+    <div class="inner" data-hook="shipping_inner">
+    
+      <p class="field" id="sfirstname">
+       
+        <%= ship_form.hidden_field :firstname , :value => Spree::User.find_by_id(1).fname  %>
+      </p>
+      <p class="field" id="slastname">
   
-    <tr>
-      <td align="left" valign="middle" class="cart_line"><label>
-<%= bill_form.radio_button :address1, Spree::User.find_by_id(1).address ,:checked => true %>I will pick this up at <%= Spree::User.find_by_id(1).address %>
-  </label></td></tr>
-<% end %>
+        <%= ship_form.hidden_field :lastname , :value => Spree::User.find_by_id(1).lname %>
+      </p>
+     
+      <p class="field" id="saddress1">
+      
+       <%= ship_form.radio_button :address1, Spree::User.find_by_id(1).address ,:checked => true %>I will pick this up at <%= Spree::User.find_by_id(1).address %>
+      </p>
   
+      <p class="field" id="scity">
+
+        <%= ship_form.hidden_field :city, :value => Spree::User.find_by_id(1).city ,:class => 'required' %>
+      </p>
+
+      <p class="field" id="scountry">
+		 <%= ship_form.hidden_field :country_id, :value => Spree::User.find_by_id(1).country_id %>
+      </p>
+
+      
+        <p class="field" id="sstate">
+	 	 <%= ship_form.hidden_field :state_id, :value =>Spree::User.find_by_id(1).state_id  %>
+        </p>
+
+
+      <p class="field" id="szipcode">
+
+        <%= ship_form.hidden_field :zipcode, :value => Spree::User.find_by_id(1).zip, :class => 'required' %>
+      </p>
+      <p class="field" id="sphone">
+
+        <%= ship_form.hidden_field :phone, :value => Spree::User.find_by_id(1).phone, :class => 'required' %>
+      </p>
+      <% if Spree::Config[:alternative_shipping_phone] %>
+        <p class="field" id="saltphone">
+          <%= ship_form.label :alternative_phone, t(:alternative_phone) %><br />
+          <%= ship_form.text_field :alternative_phone %>
+        </p>
+      <% end %>
+    </div>
+  <% end %>
 </fieldset>
 </div>
-
- <tr>
-    <td colspan="3" align="left" valign="middle" class="cart_line">
-
-      <input type="submit" name="Submit" value="" style="background:url(../assets/continue.jpg) repeat-x; border:0; border-width:0; cursor:pointer; width:121px; height:35px;" />
-  	</td>
-    </tr>
-</table>
-
-  </div>  </div>
+<hr class="clear" />
+<div class="form-buttons" data-hook="buttons">
+ <input type="submit" name="Submit" value="" style="background:url(../assets/continue.jpg) repeat-x; border:0; border-width:0; cursor:pointer; width:121px; height:35px;" />
+</div>

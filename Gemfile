@@ -47,9 +47,10 @@ end
 # To use debugger
 # gem 'ruby-debug19', :require => 'ruby-debug'
 gem 'spree'
+gem 'spree_gateway', :git => 'git://github.com/spree/spree_gateway.git', :branch => "1-1-stable" # make sure to include after spree
+
 gem 'spree_usa_epay'
 gem 'spree_skrill'
 
 gem 'spree_flexi_variants', :git=>"git://github.com/jsqu99/spree_flexi_variants.git"
-
 

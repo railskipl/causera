@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120806104558) do
+ActiveRecord::Schema.define(:version => 20120808092417) do
 
   create_table "def_adds", :force => true do |t|
     t.string   "address"
@@ -643,6 +643,13 @@ ActiveRecord::Schema.define(:version => 20120806104558) do
     t.datetime "reset_password_sent_at"
     t.string   "api_key",                :limit => 48
     t.string   "address"
+    t.string   "fname"
+    t.string   "lname"
+    t.string   "city"
+    t.integer  "zip"
+    t.integer  "phone"
+    t.string   "state_id"
+    t.string   "country_id"
   end
 
   create_table "spree_variants", :force => true do |t|

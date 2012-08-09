@@ -1,26 +1,24 @@
-<fieldset id="payment" data-hook>
-<div style="width:100%; background: url(images/lightbox_bg.jpg); border-radius: 10px 10px 10px 10px;">
-  <div class="lightbox_title3">Payment Info</div>
+<fieldset id="payment" data-hook style="border: 0px;">
+  <span class="lightbox_title3">Payment Info</span>
   <div data-hook="checkout_payment_step">
     <% @order.available_payment_methods.each do |method| %>
-    <p>
-      <label>
+      	<span style="display:none;">
         <%= radio_button_tag "order[payments_attributes][][payment_method_id]", method.id, method == @order.payment_method %>
         <%= t(method.name, :scope => :payment_methods, :default => method.name) %>
-      </label>
-    </p>
+      </span>
+
     <% end %>
 
-    <ul id="payment-methods" data-hook>
+    <ul id="payment-methods" data-hook type='none'>
       <% @order.available_payment_methods.each do |method| %>
-        <li id="payment_method_<%= method.id %>" class="<%= 'last' if method == @order.available_payment_methods.last %>" data-hook>
+        <li id="payment_method_<%= method.id %>" class="<%= 'last' if method == @order.available_payment_methods.last %>" data-hook >
           <fieldset>
             <%= render :partial => "spree/checkout/payment/#{method.method_type}", :locals => { :payment_method => method } %>
           </fieldset>
         </li>
       <% end %>
     </ul>
-    <br style="clear:both;" />
+   
     <div data-hook="coupon_code_field" data-hook></div>
   </div>
 </fieldset>

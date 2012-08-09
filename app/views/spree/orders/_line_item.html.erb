@@ -1,18 +1,23 @@
 
- <tr>
+
+<tr class="<%= cycle('', 'alt') %> line-item">
  
-       <td class="cart_line"><div class="cart_product" align="left">
-    <%= truncate(variant.product.name, :length => 50, :omission => "...") %></div>
+  <td data-hook="cart_item_description">
+    <h3><%= variant.product.name %></h3>
+    <%= variant.options_text %>
+    <% if @order.insufficient_stock_lines.include? line_item %>
+      <span class="out-of-stock">
+        <%= variant.in_stock? ? t(:insufficient_stock, :on_hand => variant.on_hand) : t(:out_of_stock) %><br />
+      </span>
+    <% end %>
 
-  <div class="cart_price" >
-    <%= number_to_currency line_item.price %></div>
-</td>
-  <td data-hook="cart_item_quantity">
-    <%= item_form.hidden_field :quantity, :min => 0, :class => "line_item_quantity", :size => 5 %>
   </td>
-  </tr>
-  <tr>
-
-  <td class="cart_line2"><div class="cart_total">Sub Total	</div>				<div class="cart_price"> <%= number_to_currency line_item.price %></div></td>
+ 
+  <td data-hook="cart_item_quantity">
+    <%= item_form.number_field :quantity, :min => 0, :class => "textfield_bg2", :size => 5 %>
+  </td>
+  <td data-hook="cart_item_price">
+    <%= number_to_currency line_item.price %>
+  </td>
 
 </tr>

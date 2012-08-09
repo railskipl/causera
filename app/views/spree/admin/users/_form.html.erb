@@ -16,6 +16,7 @@
     <%= f.password_field :password_confirmation %>
     <%= f.error_message_on :password_confirmation %>
   <% end %>
+  
    <%= f.field_container :fname do %>
     <%= f.label :fname, t(:first_name) %><br />
     <%= f.text_field :fname %>

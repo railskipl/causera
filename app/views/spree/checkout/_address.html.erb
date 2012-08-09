@@ -23,7 +23,7 @@
      
       <p class="field" id="saddress1">
       
-       <%= ship_form.hidden_field :address1, :value => Spree::User.find_by_id(1).address %>This order will be bulk shipped to <%= Spree::User.find_by_id(1).address %> 
+       <%= ship_form.hidden_field :address1, :value => Spree::User.find_by_id(1).address %>This order will be bulk shipped to <%= Spree::User.find_by_id(1).address %> , <%= Spree::User.find_by_id(1).city %> 
       </p>
   
       <p class="field" id="scity">

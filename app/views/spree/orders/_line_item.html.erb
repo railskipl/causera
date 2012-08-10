@@ -1,8 +1,9 @@
+<%= stylesheet_link_tag 'store/all' %>
 
 
 <tr class="<%= cycle('', 'alt') %> line-item">
- 
-  <td data-hook="cart_item_description">
+
+  <td data-hook="cart_item_description" align="center">
     <h3><%= variant.product.name %></h3>
     <%= variant.options_text %>
     <% if @order.insufficient_stock_lines.include? line_item %>
@@ -12,12 +13,17 @@
     <% end %>
 
   </td>
- 
-  <td data-hook="cart_item_quantity">
-    <%= item_form.number_field :quantity, :min => 0, :class => "textfield_bg2", :size => 5 %>
-  </td>
-  <td data-hook="cart_item_price">
+  <td data-hook="cart_item_price" align="center" style="color:#e57520;font-size: 15px;">
     <%= number_to_currency line_item.price %>
   </td>
-
+  <td data-hook="cart_item_quantity" align="center" >
+    <%= item_form.number_field :quantity, :min => 0, :class => "line_item_quantity", :size => 5 %>
+  </td>
+  <td data-hook="cart_item_total" align="center" style="color:#e57520;font-size: 15px;">
+    <%= number_to_currency(line_item.price * line_item.quantity) unless line_item.quantity.nil? %>
+  </td>
+  <td data-hook="cart_item_delete" align="center">
+    <%= link_to image_tag('icons/delete.png'), '#', :class => 'delete', :id => "delete_#{dom_id(line_item)}" %>
+  </td>
 </tr>
+

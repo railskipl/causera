@@ -15,9 +15,9 @@
 
         <div data-hook="cart_items">
           <%= render :partial => 'form', :locals => { :order_form => order_form } %>
-        </div>
+        </div><br/>
           <div class="links columns ten alpha" data-hook="cart_buttons">
-          <%= button_tag :class => 'primary', :id => 'update-button' do %>
+          <%= button_tag :class => "button", :id => 'update-button' do %>
             <%= t(:update) %>
           <% end %>
          
@@ -33,10 +33,5 @@
       </div>
     <% end %>
   </div>
- <%= form_tag empty_cart_path, :method => :put do %>
 
-      <%= submit_tag t(:empty_cart), :class => 'button' %>
-     
-  
-  <% end %>
 <% end %>

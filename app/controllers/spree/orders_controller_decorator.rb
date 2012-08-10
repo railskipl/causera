@@ -9,6 +9,7 @@ module Spree
     # Currently, we are assuming the inbound ad_hoc_option_values and customizations apply to the entire inbound product/variant 'group', as more surgery
     # needs to occur in the cart partial for this to be done 'right'
     #
+   
     def populate
       @order = current_order(true)
 
@@ -26,7 +27,7 @@ module Spree
       fire_event('spree.cart.add')
       fire_event('spree.order.contents_changed')
       
-             
+      
 
     end
 

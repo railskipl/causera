@@ -13,8 +13,13 @@
   <td data-hook="cart_item_price" align="center" style="color:#e57520;font-size: 15px;">
     <%= number_to_currency line_item.price %>
   </td>
-  <td data-hook="cart_item_quantity" align="center" >
-    <%= item_form.number_field :quantity, :min => 0, :class => "line_item_quantity", :size => 5 %>
+  <td data-hook="cart_item_quantity" align="center">
+  	<style>
+  		.aa{
+  			width:10px;
+  		}
+  	</style>
+    <%= item_form.number_field :quantity, :min => 0, :class => "line_item_quantity aa", :size => 5 %>
   </td>
   <td data-hook="cart_item_total" align="center" style="color:#e57520;font-size: 15px;">
     <%= number_to_currency(line_item.price * line_item.quantity) unless line_item.quantity.nil? %>

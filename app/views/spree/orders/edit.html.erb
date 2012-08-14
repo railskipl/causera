@@ -3,7 +3,7 @@ function refreshMe() {
 var _now = new Date();
 var _prev = 0;
 var indx = location.search.indexOf("time=");
-if (indx != -1) _prev = parseInt(location.search.slice(indx + 5));
+if (indx != -1) _prev = parseInt(location.search.slice(indx + 1));
 if (_prev < _now.getTime() - 5000) {
 indx = location.href.indexOf("?");
 if (indx == -1) indx = location.href.length;
@@ -39,8 +39,11 @@ window.onload=refreshMe;
           <h4 class="cart_line2"><div class="cart_total">Sub total 		</div>	 <%= order_subtotal(@order) %></h5>
         </div>
         <div class="links columns ten alpha" data-hook="cart_buttons">
-          
-         <a href='/checkout' style="background:url(../assets/continue.jpg) no-repeat; border:0; border-width:0; cursor:pointer; width:121px; height:35px;padding: 7px 87px 36px 35px; float: right;" id = 'checkout-link' ></a>
+          <table border="0" align=right cellpadding="15">
+         <tr>
+            	<td align="right">
+         <a href='/checkout' style="background:url(../assets/continue.jpg) no-repeat; border:0; border-width:0; cursor:pointer; width:121px; height:35px;padding: 7px 87px 36px 35px;" id = 'checkout-link' ></a>
+         </table>
         </div>
         
       </div>

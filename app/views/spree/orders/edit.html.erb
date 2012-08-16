@@ -1,22 +1,17 @@
-<head>
-	
 <script language="JavaScript">
-	var flag = true;
-	 
-	function reloadPage()
-	{
-    window.location.reload(flag);
-	    alert("loading.....!");
-     
-    flag = false;
-	}
- 
-if (flag == true)
-{
-    window.onload = reloadPage;
-	}
+function refreshMe() {
+var _now = new Date();
+var _prev = 0;
+var indx = location.search.indexOf("time=");
+if (indx != -1) _prev = parseInt(location.search.slice(indx + 1));
+if (_prev < _now.getTime() - 5000) {
+indx = location.href.indexOf("?");
+if (indx == -1) indx = location.href.length;
+location.replace(location.href.slice(0, indx) + "?time=" + _now.getTime());
+}
+}
+window.onload=refreshMe;
 </script>
-</head>
 <% @body_id = 'cart' %>
 
 <% if @order.line_items.empty? %>

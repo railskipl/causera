@@ -17,19 +17,17 @@
     <td align="right" valign="middle" class="cart_line">Email</td>
      <td align="left" valign="top" class="cart_line"><label>
      	  <%= f.email_field :email, :class => 'list5'   %>
-  		
+  		<td>We will send your purchase receipt to this email. <a href="#">View our privacy policy</a> 
     </label></td>
   </tr>
 
             <tr>
     <td align="right" valign="middle" class="cart_line">&nbsp;</td>
-    <td align="left" valign="top" class="cart_line"><label>
+    <td align="left" valign="top" class="cart_line" colspan="2"><label>
       <input type="submit" name="Submit" value="" style="background:url(../assets/continue.jpg) repeat-x; border:0; border-width:0; cursor:pointer; width:121px; height:35px;" />
 &nbsp;    </label></td>
     </tr>
-     <tr>
- 	<td align="right"><a href="#" style="color:grey;">Terms</a>
- 	</tr>
+  
 </table>
 
       <% end %>

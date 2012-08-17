@@ -145,7 +145,7 @@
 
 	 <div class="product_box">
 	 	
-	  <table width="100%" border="0" cellspacing="" cellpadding="0">
+	  <table width="100%" border="0" cellspacing="0" cellpadding="">
   <tr>
     <td width="40%" align="left" valign="top">
 	
@@ -169,7 +169,7 @@
   </ul>
 <% end %>
   
-     		</ul>
+     		
         </div>
       </div>
     </div>
@@ -181,7 +181,7 @@
 
 	<div class="discription">
 	   <span class="heading2"><%= truncate(product.name, :length => 50) %></span>
-	  <p><%= truncate(product.description, :length => 100) %><a href="#"><img src="/assets/right_arrow.jpg" alt="" width="16" height="15" border="0" align="absmiddle" style="margin-top:" /></a></div>
+	  <p><%= truncate(product.description, :length => 100) %><a href="#"><img src="/assets/right_arrow.jpg" alt="" width="16" height="15" border="0" align="absmiddle" style="margin-top:" /></a></p></div>
      <div class="form_wrap">
      	<table width="100%" border="0" cellpadding="0" cellspacing="10">
 <%= form_for :order, :url => populate_orders_url ,:html => { :class => "data#{product.id}"},:remote => true do |f| %>
@@ -194,6 +194,7 @@
           <% if product.has_stock? || Spree::Config[:allow_backorders] %>      
             <%= hidden_field_tag (product.has_variants? ? :quantity : "variants[#{product.master.id}]"),
               1, :class => 'title', :in => 1..product.on_hand %>
+             
             <tr>
     <td align="center" valign="middle" class="price"> <%= number_to_currency product.price %>  </td>
   </tr>
@@ -254,9 +255,9 @@
   </td>
     </tr>
 </table>
-
+ </td>
 		
-</div>
+</div></tr>
 </table></div>
 
 
@@ -271,3 +272,5 @@
 %><%= paginate paginated_products %><% end %>
 </div>
 <%= render 'spree/footer'%>
+</div> </div> 
+</body>

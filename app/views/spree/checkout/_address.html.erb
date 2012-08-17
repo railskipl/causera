@@ -1,68 +1,11 @@
-<div class="columns alpha six" data-hook="billing_fieldset_wrapper">
-<fieldset id="billing" data-hook style="border: 0;">
-  <%= form.fields_for :bill_address do |bill_form| %>
-  
-    <div class="inner" data-hook="billing_inner" >
-    	
-      <p class="field" id="bfirstname">
-   		First name :
-        <%= bill_form.text_field :firstname,:value => ""  %>
-      </p>
-      <p class="field" id="slastname">
-  		Last Name :
-        <%= bill_form.text_field :lastname , :value => "" %>
-      </p>
-          <p class="field" id="saddress1">
-      	Address :
-       <%= bill_form.text_field :address1, :value => "" %> 
-      </p>
-  
-      <p class="field" id="bcity">
-		City :
-        <%= bill_form.text_field :city, :value => ""  %>
-      </p>
-
-    <p class="field" id="bcountry">
-        <%= bill_form.label :country_id, t(:country) %><span class="req">*</span><br />
-        <span id="bcountry">
-          <%= bill_form.collection_select :country_id, available_countries, :id, :name, {}, {:class => 'required'} %>
-        </span>
-      </p>
-      
-        <p class="field" id="bstate">
-        	State :
-	 	 <%= bill_form.text_field :state_id, :value => ""  %>
-        </p>
-
-
-      <p class="field" id="bzipcode">
-		Zip Code :
-        <%= bill_form.text_field :zipcode, :value => "" %>
-      </p>
-      <p class="field" id="bphone">
-		Phone :
-        <%= bill_form.text_field :phone, :value => ""  %>
-      </p>
-      <% if Spree::Config[:alternative_shipping_phone] %>
-        <p class="field" id="saltphone">
-          <%= bill_form.label :alternative_phone, t(:alternative_phone) %><br />
-          <%= bill_form.text_field :alternative_phone %>
-        </p>
-      <% end %>
-    </div>
-  <% end %>
-</fieldset>
-</div>
-
-
 <div class="columns omega six" data-hook="shipping_fieldset_wrapper">
 <fieldset id="shipping" data-hook style="border: 0;">
 <div style="width:100%; background: url(assets/lightbox_bg.jpg); border-radius: 10px 10px 10px 10px;">
- <div class="lightbox_title2">Shipping Address</div>
+
 <div class="columns omega six" data-hook="shipping_fieldset_wrapper">
 
   <%= form.fields_for :ship_address do |ship_form| %>
-
+<table><tr><th>Shipping :</th>
     <p class="field checkbox" data-hook="use_billing" >
       <%= check_box_tag 'order[use_billing]', '1', (!(@order.bill_address.empty? && @order.ship_address.empty?) && @order.bill_address.same_as?(@order.ship_address)) %> 
       <%= label_tag :order_use_billing, t(:use_billing_address), :id => 'use_billing' %>
@@ -79,8 +22,8 @@
       </p>
      
       <p class="field" id="saddress1">
-      
-       <%= ship_form.hidden_field :address1, :value => Spree::User.find_by_id(1).address %>This order will be bulk shipped to <%= Spree::User.find_by_id(1).address %> , <%= Spree::User.find_by_id(1).city %> 
+      <td>
+       <%= ship_form.hidden_field :address1, :value => Spree::User.find_by_id(1).address %>This order will be bulk shipped to <%= Spree::User.find_by_id(1).address %> , <%= Spree::User.find_by_id(1).city %></td> 
       </p>
   
       <p class="field" id="scity">
@@ -113,10 +56,83 @@
         </p>
       <% end %>
     </div>
+    </tr></table>
   <% end %>
 </fieldset>
 </div>
-<hr class="clear" />
+
+<div class="columns alpha six" data-hook="billing_fieldset_wrapper">
+<fieldset id="billing" data-hook style="border: 0;">
+  <%= form.fields_for :bill_address do |bill_form| %>
+  <table> <tr><th rowspan="3" valign="top">Billing : </th>
+    <div class="inner" data-hook="billing_inner" >
+    <td>	<tr><td>
+      <span class="field" id="bfirstname">
+   	       <%= bill_form.text_field :firstname,:value => "First name"  %>
+      </span>
+      <span class="field" id="slastname">
+  
+        <%= bill_form.text_field :lastname , :value => "Last name" %>
+      </span>
+       </td></tr><tr><td>
+          <span class="field" id="saddress1">
+      
+       <%= bill_form.text_field :address1, :value => "Address" %> 
+      </span>
+  
+      <span class="field" id="bcity">
+		  <%= bill_form.text_field :city, :value => "City"  %>
+      </span>
+
+    <p class="field" id="bcountry">
+        <%= bill_form.label :country_id, t(:country) %><span class="req">*</span><br />
+        <span id="bcountry">
+          <%= bill_form.collection_select :country_id, available_countries, :id, :name, {}, {:class => 'required'} %>
+        </span>
+      </p>
+      
+         <% if Spree::Config[:address_requires_state] %>
+        <p class="field" id="bstate">
+          <% have_states = !@order.bill_address.country.states.empty? %>
+          <%= bill_form.label :state, t(:state) %><span class="req">*</span><br />
+       
+          <% state_elements = [
+             bill_form.collection_select(:state_id, @order.bill_address.country.states,
+                                :id, :name,
+                                {:include_blank => true},
+                                {:class => have_states ? 'required' : 'hidden',
+                                :disabled => !have_states}) +
+             bill_form.text_field(:state_name,
+                                :class => !have_states ? 'required' : 'hidden',
+                                :disabled => have_states)
+             ].join.gsub('"', "'").gsub("\n", "")
+          %>
+          <%= javascript_tag do -%>
+            document.write("<%== state_elements %>");
+          <% end -%>
+        </p>
+      <% end %>
+
+
+      <span class="field" id="bzipcode">
+		
+        <%= bill_form.text_field :zipcode, :value => "Zip Code" %>
+      </span>
+      <span class="field" id="bphone">
+	       <%= bill_form.text_field :phone, :value => "Phone"  %>
+      </span>
+      <% if Spree::Config[:alternative_shipping_phone] %>
+        <p class="field" id="saltphone">
+          <%= bill_form.label :alternative_phone, t(:alternative_phone) %><br />
+          <%= bill_form.text_field :alternative_phone %>
+        </p>
+      <% end %>
+    </div>
+  <% end %>
+</fieldset>
+</div>
+
+<br/><br/><br/>
 <div class="form-buttons" data-hook="buttons">
  <input type="submit" name="Submit" value="" style="background:url(../assets/continue.jpg) repeat-x; border:0; border-width:0; cursor:pointer; width:121px; height:35px;" />
 </div>

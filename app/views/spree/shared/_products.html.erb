@@ -1,16 +1,8 @@
-<%= stylesheet_link_tag 'style', 'jquery.ad-gallery','colorbox','lightbox' %>
+<%= stylesheet_link_tag 'style', 'fotorama','colorbox','lightbox' %>
 
   
-<%= javascript_include_tag "jquery.ad-gallery.js","jquery.colorbox.js","jquery.colorbox-min.js",'lightbox1' %>
+<%= javascript_include_tag "fotorama.js","jquery.colorbox.js","jquery.colorbox-min.js",'lightbox1' %>
 
-  <script type="text/javascript">
-  $(function() {
-   
-    var galleries = $('.ad-gallery').adGallery();
-    
-  });
-  </script>
-  
  
 		<body >
   <div align="center" id="maindiv">
@@ -119,29 +111,19 @@
 	
 	<div id="container">
    
-    <div id="gallery" class="ad-gallery">
-      <div class="ad-image-wrapper">  </div>
-   
-      <div class="ad-nav">
-        <div class="ad-thumbs">
-             <ul class="ad-thumb-list">
+     <div class="fotorama">
           	 
           	<% if Spree::Config[:show_zero_stock_products] || product.has_stock? %>
  
        <% product.images.each do |i| %>
-        	 <li>
+        	
               <%= link_to image_tag(i.attachment.url(:mini)), i.attachment.url(:product) %>
               
    			 <% end %>
-      </li>
-  </ul>
+ 
 <% end %>
   
-     		
-        </div>
-      </div>
-    </div>
-    
+     
   </div>
 	
 	</td>

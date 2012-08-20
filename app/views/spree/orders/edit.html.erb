@@ -29,7 +29,7 @@ window.onload=refreshMe;
         <div data-hook="cart_items">
           <%= render :partial => 'form', :locals => { :order_form => order_form } %>
         </div><br/>
-          <div class="links columns ten alpha" data-hook="cart_buttons">
+          <div class="links columns ten alpha" data-hook="cart_buttons" style="margin-left:86%;">
           <%= button_tag :class => "button", :id => 'update-button' do %>
             <%= t(:update) %>
           <% end %>

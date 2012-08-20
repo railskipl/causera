@@ -6,13 +6,14 @@
     <!-- TODO: add partial with registration form -->
   </div>
   <% if Spree::Config[:allow_guest_checkout] %>
+  <center>
   <div style="width:100%; background: url(assets/lightbox_bg.jpg); border-radius: 10px 10px 10px 10px;">
    <div class="lightbox_title">Checkout as a Guest </div>
    <div style="padding:20px; border-top:1px solid #fff">
       <%= render :partial => 'spree/shared/error_messages', :locals => { :target => @order } %>
 
       <%= form_for @order, :url => update_checkout_registration_path, :method => :put, :html => { :id => 'checkout_form_registration' } do |f| %>
-   <table width="100%" border="0" cellspacing="5" cellpadding="0">
+   <table width="80%" border="0" cellspacing="10" cellpadding="0" align="center">
   <tr>
     <td align="right" valign="middle" class="cart_line">Email</td>
      <td align="left" valign="top" class="cart_line"><label>
@@ -32,5 +33,6 @@
 
       <% end %>
     </div>
+   
   <% end %>
 </div>

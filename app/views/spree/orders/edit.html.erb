@@ -1,10 +1,16 @@
-<script language="JavaScript">
-window.onload = function() {
-    if(!window.location.hash) {
-        window.location = window.location + '#loaded';
-        window.location.reload(true);
-    }
+<script type="text/javascript">
+function refreshMe() {
+var _now = new Date();
+var _prev = 0;
+var indx = location.search.indexOf("time=");
+if (indx != -1) _prev = parseInt(location.search.slice(indx + 5));
+if (_prev < _now.getTime() - 5000) {
+indx = location.href.indexOf("?");
+if (indx == -1) indx = location.href.length;
+location.replace(location.href.slice(0, indx) + "?time=" + _now.getTime());
 }
+}
+window.onload=refreshMe;
 </script>
 <% @body_id = 'cart' %>
 

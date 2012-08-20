@@ -69,20 +69,20 @@
     <div class="inner" data-hook="billing_inner" >
     <td>	<tr><td>
       <span class="field" id="bfirstname">
-   	       <%= bill_form.text_field :firstname,:value => "First name"  %>
+   	       <%= bill_form.text_field :firstname,:placeholder => "First name"  %>
       </span>
       <span class="field" id="slastname">
   
-        <%= bill_form.text_field :lastname , :value => "Last name" %>
+        <%= bill_form.text_field :lastname , :placeholder => "Last name" %>
       </span>
        </td></tr><tr><td>
           <span class="field" id="saddress1">
       
-       <%= bill_form.text_field :address1, :value => "Address" %> 
+       <%= bill_form.text_field :address1, :placeholder => "Address" %> 
       </span>
   
       <span class="field" id="bcity">
-		  <%= bill_form.text_field :city, :value => "City"  %>
+		  <%= bill_form.text_field :city, :placeholder => "City"  %>
       </span>
 
     <p class="field" id="bcountry">
@@ -117,10 +117,10 @@
 
       <span class="field" id="bzipcode">
 		
-        <%= bill_form.text_field :zipcode, :value => "Zip Code" %>
+        <%= bill_form.text_field :zipcode, :placeholder => "Zip Code" %>
       </span>
       <span class="field" id="bphone">
-	       <%= bill_form.text_field :phone, :value => "Phone"  %>
+	       <%= bill_form.text_field :phone, :placeholder => "Phone"  %>
       </span>
       <% if Spree::Config[:alternative_shipping_phone] %>
         <p class="field" id="saltphone">

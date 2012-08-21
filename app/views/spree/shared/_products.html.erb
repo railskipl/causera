@@ -2,7 +2,10 @@
 
   
 <%= javascript_include_tag "fotorama.js",'lightbox1' %>
+<head> 
 
+    <script src="http://malsup.github.com/jquery.form.js"></script> 
+</head> 
  
 		<body >
   <div align="center" id="maindiv">
@@ -103,6 +106,16 @@
   <% reset_cycle('default') %>
   <% products.each do |product| %>
 
+   <script> 
+        // wait for the DOM to be loaded 
+        $(document).ready(function() { 
+            // bind 'myForm' and provide a simple callback function 
+            $('#myForm<%= product.id %>').ajaxForm(function() { 
+				javascript: tb_show('', '<%= cart_path %>?KeepThis=true&TB_iframe=true&height=360&width=1010&modal=false', tb_pathToImage);
+            }); 
+        }); 
+    </script> 
+
 	 <div class="product_box">
 	 	
 	  <table width="100%" border="0" cellspacing="0" cellpadding="">
@@ -134,7 +147,7 @@
 	  <p><%= truncate(product.description, :length => 100) %><a href="#"><img src="/assets/right_arrow.jpg" alt="" width="16" height="15" border="0" align="absmiddle" style="margin-top:" /></a></p></div>
      <div class="form_wrap">
      	<table width="100%" border="0" cellpadding="0" cellspacing="10">
-<%= form_for :order, :url => populate_orders_url ,:html => { :class => "data#{product.id}"},:remote => true do |f| %>
+<%= form_for :order, :url => populate_orders_url ,:html => { :id => "myForm#{product.id}"} do |f| %>
      	
       <% if product.price %>
       <div data-hook="product_price" class="columns five <% if !product.has_variants? %> alpha <% else %> omega <% end %>">
@@ -189,7 +202,7 @@
 
             <tr>
     		<td align="right" valign="top">
-			<a href="/cart?KeepThis=true&TB_iframe=true&height=360&width=1010&modal=false"  onclick="$('.data<%= product.id %>').submit(); "  class="thickbox cart_button" ></a>
+          <input type="submit" class="cart_button" value="">
           <% else %>
             <%= content_tag('strong', t(:out_of_stock)) %>
           <% end %>

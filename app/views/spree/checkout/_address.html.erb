@@ -72,20 +72,20 @@
     <div class="inner" data-hook="billing_inner" >
     <td>	<tr><td>
       <span class="field" id="bfirstname">
-   	       <%= bill_form.text_field :firstname,:placeholder => "First name"  %>
+   	       <%= bill_form.text_field :firstname,:placeholder => "First name",:class => "required"  %>
       </span>
       <span class="field" id="slastname">
   
-        <%= bill_form.text_field :lastname , :placeholder => "Last name" %>
+        <%= bill_form.text_field :lastname , :placeholder => "Last name",:class => "required"  %>
       </span>
        </td></tr><tr><td>
           <span class="field" id="saddress1">
       
-       <%= bill_form.text_field :address1, :placeholder => "Address" %> 
+       <%= bill_form.text_field :address1, :placeholder => "Address" ,:class => "required" %> 
       </span>
   
       <span class="field" id="bcity">
-		  <%= bill_form.text_field :city, :placeholder => "City"  %>
+		  <%= bill_form.text_field :city, :placeholder => "City"  ,:class => "required" %>
       </span>
 
     <p class="field" id="bcountry">
@@ -120,10 +120,10 @@
 
       <span class="field" id="bzipcode">
 		
-        <%= bill_form.text_field :zipcode, :placeholder => "Zip Code" %>
+        <%= bill_form.text_field :zipcode, :placeholder => "Zip Code" ,:class => "required"  %>
       </span>
       <span class="field" id="bphone">
-	       <%= bill_form.text_field :phone, :placeholder => "Phone"  %>
+	       <%= bill_form.text_field :phone, :placeholder => "Phone" ,:class => "required"   %>
       </span>
       <% if Spree::Config[:alternative_shipping_phone] %>
         <p class="field" id="saltphone">

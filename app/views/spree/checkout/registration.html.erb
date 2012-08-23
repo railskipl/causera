@@ -7,24 +7,24 @@
   </div>
   <% if Spree::Config[:allow_guest_checkout] %>
   <center>
-  <div style="width:100%; background: url(assets/lightbox_bg.jpg); border-radius: 10px 10px 10px 10px;margin:25px;">
+  <div style="width:100%; background: url(assets/lightbox_bg.jpg); border-radius: 10px 10px 10px 10px;margin:40px;">
    <div class="lightbox_title">Checkout as a Guest </div>
    <div style="padding:20px; border-top:1px solid #fff">
       <%= render :partial => 'spree/shared/error_messages', :locals => { :target => @order } %>
 
       <%= form_for @order, :url => update_checkout_registration_path, :method => :put, :html => { :id => 'checkout_form_registration' } do |f| %>
-   <table width="80%" border="0" cellspacing="10" cellpadding="0" align="center">
+   <table width="80%" border="0" cellspacing="10" cellpadding="0" style="float:left;">
   <tr>
-    <td align="right" valign="middle" class="cart_line">Email</td>
-     <td align="left" valign="top" class="cart_line"><label>
-     	  <%= f.email_field :email, :class => 'list5'   %>
+    <td align="left" valign="middle" class="cart_line"><span>Email</span><br/>
+     <label>
+     	  <%= f.email_field :email, :class => 'list5'   %></td>
   		<td>We will send your purchase receipt to this email. <a href="http://causera.org/privacy-policy">View our privacy policy</a> 
     </label></td>
   </tr>
 
             <tr>
-    <td align="right" valign="middle" class="cart_line">&nbsp;</td>
-    <td align="left" valign="top" class="cart_line" colspan="2"><label>
+  
+    <td align="left" valign="top" class="cart_line" colspan="3"><label>
       <input type="submit" name="Submit" value="" style="background:url(../assets/continue.jpg) repeat-x; border:0; border-width:0; cursor:pointer; width:121px; height:35px;" />
 &nbsp;    </label></td>
     </tr>

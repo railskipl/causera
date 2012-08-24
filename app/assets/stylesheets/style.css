@@ -174,7 +174,7 @@ select, input, textarea {
 .continue{background:url(/assets/continue.jpg) repeat-x; border:0; border-width:0; cursor:pointer; width:121px; height:35px}
 
 .cart_line{ background:#FFFFFF; padding:10px; border-radius:5px; border-bottom:1px solid #e9e9e9}
-.cart_line2{ background:#f2dfaa; padding:10px; border-radius:5px; border-bottom:1px solid #e9e9e9;width: 90%;margin-left:10px;}
+.cart_line2{ background:#f2dfaa; padding:10px; border-radius:5px; border-bottom:1px solid #e9e9e9;width: 80%;margin-left:10px;}
 .cart_product{ width:80%; float:left; text-align:left; font-size:14px; color:#434343; background:url(../assets/bullet.jpg) no-repeat 0 5px; padding:0 0 0 15px}
 .cart_price{ width:10%; float:right; text-align:left; font-size:14px; color:#434343; font-weight:bold}
 

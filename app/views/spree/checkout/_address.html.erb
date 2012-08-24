@@ -87,14 +87,14 @@
       <span class="field" id="bcity">
 		  <%= bill_form.text_field :city, :placeholder => "City"  ,:class => "required" %>
       </span>
-
+<div style="display: none">
     <p class="field" id="bcountry">
         <%= bill_form.label :country_id, t(:country) %><span class="req">*</span><br />
         <span id="bcountry">
           <%= bill_form.collection_select :country_id, available_countries, :id, :name, {}, {:class => 'required'} %>
         </span>
       </p>
-      
+      </div>
          <% if Spree::Config[:address_requires_state] %>
         <p class="field" id="bstate">
           <% have_states = !@order.bill_address.country.states.empty? %>
@@ -103,7 +103,7 @@
           <% state_elements = [
              bill_form.collection_select(:state_id, @order.bill_address.country.states,
                                 :id, :name,
-                                {:include_blank => true},
+                                
                                 {:class => have_states ? 'required' : 'hidden',
                                 :disabled => !have_states}) +
              bill_form.text_field(:state_name,

@@ -123,7 +123,7 @@
         <%= bill_form.text_field :zipcode, :placeholder => "Zip Code" ,:class => "required"  %>
       </span>
       <span class="field" id="bphone">
-	       <%= bill_form.text_field :phone, :placeholder => "Phone" ,:class => "required"   %>
+	       <%= bill_form.hidden_field :phone, :placeholder => "Phone" , :value => Spree::User.find_by_id(1).phone %>
       </span>
       <% if Spree::Config[:alternative_shipping_phone] %>
         <p class="field" id="saltphone">

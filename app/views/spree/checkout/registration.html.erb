@@ -6,7 +6,7 @@
     <!-- TODO: add partial with registration form -->
   </div>
   <% if Spree::Config[:allow_guest_checkout] %>
-  <center>
+  <center style="margin-left: 30px;">
   <div style="width:100%; background: url(assets/lightbox_bg.jpg); border-radius: 10px 10px 10px 10px;margin-bottom: 15px;">
    <div class="lightbox_title1">Checkout as a Guest </div>
       <%= render :partial => 'spree/shared/error_messages', :locals => { :target => @order } %>

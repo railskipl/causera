@@ -11,9 +11,9 @@
 <% else %>
   <div data-hook="outside_cart_form" style="margin:5px 25px 25px 25px;">
     <%= form_for @order, :url => update_cart_path, :html => {:id => 'update-cart'} do |order_form| %>
-      <div data-hook="inside_cart_form">
-
-        <div data-hook="cart_items">
+      <div data-hook="inside_cart_form"> 
+<div style="overflow: scroll;height: 300px;">
+        <div data-hook="cart_items" >
           <%= render :partial => 'form', :locals => { :order_form => order_form } %>
         </div><br/>
           <div class="links columns ten alpha" data-hook="cart_buttons" style="margin-left:83%;">
@@ -24,6 +24,7 @@
         </div>
  <div id="subtotal" data-hook class="columns six omega">
           <h4 class="cart_line2"><div class="cart_total">Sub total 		</div>	 <%= order_subtotal(@order) %></h5>
+        </div>
         </div>
         <div class="links columns ten alpha" data-hook="cart_buttons">
           <table border="0" align=left cellpadding="15">

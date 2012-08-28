@@ -12,7 +12,7 @@
   <div data-hook="outside_cart_form" style="margin:5px 25px 25px 25px;">
     <%= form_for @order, :url => update_cart_path, :html => {:id => 'update-cart'} do |order_form| %>
       <div data-hook="inside_cart_form"> 
-<div style="overflow: scroll;height: 300px;">
+<div style="overflow-y: scroll;height: 300px;">
         <div data-hook="cart_items" >
           <%= render :partial => 'form', :locals => { :order_form => order_form } %>
         </div><br/>

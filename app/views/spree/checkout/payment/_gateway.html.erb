@@ -1,7 +1,7 @@
 
 <% param_prefix = "payment_source[#{payment_method.id}]" %>
-First Name <br/> <%= text_field param_prefix, 'first_name', :value => @order.billing_firstname %><br/><br/>
-Last Name <br/> <%= text_field param_prefix, 'last_name', :value => @order.billing_lastname %>
+ <%= hidden_field param_prefix, 'first_name', :value => @order.billing_firstname %>
+<%= hidden_field param_prefix, 'last_name', :value => @order.billing_lastname %>
 <p class="field" data-hook="card_number">
   <%= label_tag nil, t(:card_number) %><br />
   <% options_hash = Rails.env.production? ? {:autocomplete => 'off'} : {} %>

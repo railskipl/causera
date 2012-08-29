@@ -94,7 +94,7 @@
           <%= bill_form.collection_select :country_id, available_countries, :id, :name, {}, {:class => 'required'} %>
         </span>
       </p>
-      </div>
+    
          <% if Spree::Config[:address_requires_state] %>
         <p class="field" id="bstate">
           <% have_states = !@order.bill_address.country.states.empty? %>
@@ -116,7 +116,7 @@
           <% end -%>
         </p>
       <% end %>
-
+  </div>
 
       <span class="field" id="bzipcode">
 		

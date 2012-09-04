@@ -13,6 +13,12 @@
 
 ActiveRecord::Schema.define(:version => 20120808092417) do
 
+  create_table "def_addresses", :force => true do |t|
+    t.string   "address"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
   create_table "def_adds", :force => true do |t|
     t.string   "address"
     t.datetime "created_at", :null => false
@@ -185,12 +191,6 @@ ActiveRecord::Schema.define(:version => 20120808092417) do
     t.datetime "created_at",                     :null => false
     t.datetime "updated_at",                     :null => false
     t.string   "customization_image"
-  end
-
-  create_table "spree_def_addresses", :force => true do |t|
-    t.string   "address"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
   end
 
   create_table "spree_excluded_ad_hoc_option_values", :force => true do |t|
@@ -624,8 +624,8 @@ ActiveRecord::Schema.define(:version => 20120808092417) do
     t.string   "persistence_token"
     t.string   "reset_password_token"
     t.string   "perishable_token"
-    t.integer  "sign_in_count"
-    t.integer  "failed_attempts"
+    t.integer  "sign_in_count",                         :default => 0, :null => false
+    t.integer  "failed_attempts",                       :default => 0, :null => false
     t.datetime "last_request_at"
     t.datetime "current_sign_in_at"
     t.datetime "last_sign_in_at"
@@ -634,8 +634,8 @@ ActiveRecord::Schema.define(:version => 20120808092417) do
     t.string   "login"
     t.integer  "ship_address_id"
     t.integer  "bill_address_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",                                           :null => false
+    t.datetime "updated_at",                                           :null => false
     t.string   "authentication_token"
     t.string   "unlock_token"
     t.datetime "locked_at"
@@ -651,6 +651,8 @@ ActiveRecord::Schema.define(:version => 20120808092417) do
     t.string   "state_id"
     t.string   "country_id"
   end
+
+  add_index "spree_users", ["persistence_token"], :name => "index_users_on_persistence_token"
 
   create_table "spree_variants", :force => true do |t|
     t.string   "sku",                                         :default => "",    :null => false

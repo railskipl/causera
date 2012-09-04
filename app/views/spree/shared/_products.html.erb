@@ -5,6 +5,7 @@
 <head> 
 
     <script src="http://malsup.github.com/jquery.form.js"></script> 
+    <script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.8/jquery-ui.min.js"></script>
 </head> 
  
 		<body >
@@ -166,7 +167,7 @@
 <% lookup=ActionView::LookupContext.new(ActionController::Base.view_paths, {:formats => [:html]}) %>
 
 	<div id="ad_hoc_options" class="textfield_bg1">
-  <dl>
+  <dl $("#ad_hoc_option_values_8").css({border : 'solid red 2px', background: '#ffffff'}).animate({backgroundColor: '#ff0000'}, 400, function() {$("#ad_hoc_option_values_8").animate({backgroundColor: '#ffffff'}, 2500) } );>
     <% product.ad_hoc_option_types.each do |ahot| %>
       <% ot=ahot.option_type %>
       <% class_str='ad-hoc-option-select' %>

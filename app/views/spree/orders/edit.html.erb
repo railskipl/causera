@@ -9,14 +9,14 @@
   </div>
 
 <% else %>
-  <div data-hook="outside_cart_form" style="margin:25px; ">
+  <div data-hook="outside_cart_form" style="margin:5px 25px 25px 25px;">
     <%= form_for @order, :url => update_cart_path, :html => {:id => 'update-cart'} do |order_form| %>
-      <div data-hook="inside_cart_form">
-
-        <div data-hook="cart_items">
+      <div data-hook="inside_cart_form"> 
+<div style="overflow-y: scroll;height: 300px;">
+        <div data-hook="cart_items" >
           <%= render :partial => 'form', :locals => { :order_form => order_form } %>
         </div><br/>
-          <div class="links columns ten alpha" data-hook="cart_buttons" style="margin-left:86%;">
+          <div class="links columns ten alpha" data-hook="cart_buttons" style="margin-left:83%;">
           <%= button_tag :class => "button", :id => 'update-button' do %>
             <%= t(:update) %>
           <% end %>
@@ -25,14 +25,16 @@
  <div id="subtotal" data-hook class="columns six omega">
           <h4 class="cart_line2"><div class="cart_total">Sub total 		</div>	 <%= order_subtotal(@order) %></h5>
         </div>
+        </div>
         <div class="links columns ten alpha" data-hook="cart_buttons">
-          <table border="0" align=left cellpadding="15">
+          <table border="0" align=left cellpadding="15" width="50%">
          <tr>
             	<td align="left">
-         <a href='/checkout' style="background:url(../assets/continue.jpg) no-repeat; border:0; border-width:0; cursor:pointer; width:121px; height:35px;padding: 7px 87px 36px 35px;" id = 'checkout-link' ></a>
+         <a href='/checkout' style="background:url(../assets/checkout.jpg) no-repeat; border:0; border-width:0; cursor:pointer; width:121px; height:35px;padding: 7px 87px 36px 35px;" id = 'checkout-link' ></a>
+              <a onclick=" parent.eval('tb_remove()')" style="background:url(../assets/continue_shopping.jpg) no-repeat; border:0; border-width:0; cursor:pointer; width:225px; height:35px;padding: 7px 220px 36px 35px;"></a>
+
          </table>
         </div>
-        
       </div>
     <% end %>
   </div>

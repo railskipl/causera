@@ -8,6 +8,7 @@
 #TB_window {
 	font: 12px Arial, Helvetica, sans-serif;
 	color: #333333;
+	overflow:hidden;
 }
 
 #TB_secondLine {

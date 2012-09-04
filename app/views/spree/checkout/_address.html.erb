@@ -1,6 +1,6 @@
 
- <div style="margin:15px;">
- 
+ 	<div style="width:90%; background: url(/assets/lightbox_bg.jpg); border-radius: 10px 10px 10px 10px;margin-left:30px;margin-bottom: 15px;">
+
  <div class="lightbox_title2">Shipping and Billing Address</div>
 <div class="columns omega six" data-hook="shipping_fieldset_wrapper">
 <fieldset id="shipping" data-hook style="border: 0;">
@@ -87,23 +87,24 @@
       <span class="field" id="bcity">
 		  <%= bill_form.text_field :city, :placeholder => "City"  ,:class => "required" %>
       </span>
-
+<div style="display: none">
     <p class="field" id="bcountry">
         <%= bill_form.label :country_id, t(:country) %><span class="req">*</span><br />
         <span id="bcountry">
           <%= bill_form.collection_select :country_id, available_countries, :id, :name, {}, {:class => 'required'} %>
         </span>
       </p>
-      
+      </div>
          <% if Spree::Config[:address_requires_state] %>
-        <p class="field" id="bstate">
+     <table><tr><td>   <p class="field" id="bstate">
           <% have_states = !@order.bill_address.country.states.empty? %>
-          <%= bill_form.label :state, t(:state) %><span class="req">*</span><br />
+          
+          <%= bill_form.label :state, t(" ") %>
        
           <% state_elements = [
              bill_form.collection_select(:state_id, @order.bill_address.country.states,
                                 :id, :name,
-                                {:include_blank => true},
+                                
                                 {:class => have_states ? 'required' : 'hidden',
                                 :disabled => !have_states}) +
              bill_form.text_field(:state_name,
@@ -114,16 +115,16 @@
           <%= javascript_tag do -%>
             document.write("<%== state_elements %>");
           <% end -%>
-        </p>
+      </p> </td> 
       <% end %>
 
-
+<td>
       <span class="field" id="bzipcode">
 		
         <%= bill_form.text_field :zipcode, :placeholder => "Zip Code" ,:class => "required"  %>
-      </span>
+      </span></td></tr></table>
       <span class="field" id="bphone">
-	       <%= bill_form.text_field :phone, :placeholder => "Phone" ,:class => "required"   %>
+	       <%= bill_form.hidden_field :phone, :placeholder => "Phone" , :value => Spree::User.find_by_id(1).phone %>
       </span>
       <% if Spree::Config[:alternative_shipping_phone] %>
         <p class="field" id="saltphone">

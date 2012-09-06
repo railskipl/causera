@@ -8,19 +8,20 @@ module Spree
     respond_to :html
 
     def index
+      
       @searcher = Config.searcher_class.new(params)
       @products = @searcher.retrieve_products
-      respond_with(@products)
       
-
+      respond_with(@products)
     end
 
     def show
+      
       return unless @product
 
       @variants = Variant.active.includes([:option_values, :images]).where(:product_id => @product.id)
       @product_properties = ProductProperty.includes(:property).where(:product_id => @product.id)
-
+      
       referer = request.env['HTTP_REFERER']
 
       if referer && referer.match(HTTP_REFERER_REGEXP)

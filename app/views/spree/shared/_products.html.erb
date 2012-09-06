@@ -2,10 +2,15 @@
 
   
 <%= javascript_include_tag "fotorama.js",'lightbox1' %>
+<script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.8/jquery-ui.min.js"></script>
+
+
+
 <head> 
 
     <script src="http://malsup.github.com/jquery.form.js"></script> 
     <script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.8/jquery-ui.min.js"></script>
+    
 </head> 
  
 		<body >
@@ -109,6 +114,20 @@
 
    <script> 
         // wait for the DOM to be loaded 
+        jQuery(document).ready(function() { 
+        jQuery("#myForm<%= product.id %>").validate({ 
+              errorElement:'div',
+              rules: {
+                      "ad_hoc_option_values[1]":{ required: true },
+
+                      "ad_hoc_option_values[2]":{ required:true }
+                      },
+              messages: {
+                      
+                      }
+              });
+      });
+      
         $(document).ready(function() { 
             // bind 'myForm' and provide a simple callback function 
             $('#myForm<%= product.id %>').ajaxForm(function() { 
@@ -116,8 +135,10 @@
             }); 
         }); 
     </script> 
-
+	
 	 <div class="product_box">
+	 	<div id="cart-forms" data-hook="cart_form">
+	 	<%= form_for :order, :url => populate_orders_url ,:html => { :id => "myForm#{product.id}"} do |f| %>
 	 	
 	  <table width="100%" border="0" cellspacing="0" cellpadding="">
   <tr>
@@ -148,7 +169,7 @@
 	  <p><%= truncate(product.description, :length => 100) %><a href="#"><img src="/assets/right_arrow.jpg" alt="" width="16" height="15" border="0" align="absmiddle" style="margin-top:" /></a></p></div>
      <div class="form_wrap">
      	<table width="100%" border="0" cellpadding="0" cellspacing="10">
-<%= form_for :order, :url => populate_orders_url ,:html => { :id => "myForm#{product.id}"} do |f| %>
+
      	
       <% if product.price %>
       <div data-hook="product_price" class="columns five <% if !product.has_variants? %> alpha <% else %> omega <% end %>">
@@ -162,13 +183,14 @@
             <tr>
     <td align="center" valign="middle" class="price"> <%= number_to_currency product.price %>  </td>
   </tr>
-  
+  	
       <% if product.ad_hoc_option_types && !product.ad_hoc_option_types.empty? %>
-<% lookup=ActionView::LookupContext.new(ActionController::Base.view_paths, {:formats => [:html]}) %>
+      <% lookup=ActionView::LookupContext.new(ActionController::Base.view_paths, {:formats => [:html]}) %>
 
 	<div id="ad_hoc_options" class="textfield_bg1">
-  <dl $("#ad_hoc_option_values_8").css({border : 'solid red 2px', background: '#ffffff'}).animate({backgroundColor: '#ff0000'}, 400, function() {$("#ad_hoc_option_values_8").animate({backgroundColor: '#ffffff'}, 2500) } );>
+  
     <% product.ad_hoc_option_types.each do |ahot| %>
+   
       <% ot=ahot.option_type %>
       <% class_str='ad-hoc-option-select' %>
       <% class_str += ' required' if ahot.is_required %>
@@ -180,7 +202,7 @@
       <% if lookup.exists?(partial_name,nil,true) %>
         <%= render :partial => partial_name, :locals => {:option_type=>ahot, :class_str=>class_str} %>
       <% else %>
- 
+        
         <% select_opts = {:class => class_str} %>
         <% select_opts[:prompt] =  ot.presentation if ahot.option_values.size > 1 %>
 
@@ -189,11 +211,13 @@
             options_for_select(ad_hoc_option_value_options(ahot.option_values)),
             select_opts
             %>
-  <br/><br/>
+            <br/><br/>
   
       <% end %>
       <% end %> 
-  </dl>
+      
+      
+  
 </div>
  <% else %>
 <div class="textfield_bg" style="background-color: white;height: 100px;">
@@ -203,7 +227,9 @@
 
             <tr>
     		<td align="right" valign="top">
-          <input type="submit" class="cart_button" value="">
+    			
+    
+          <input type="submit" class="cart_button" value="" >
           <% else %>
             <%= content_tag('strong', t(:out_of_stock)) %>
           <% end %>
@@ -214,7 +240,7 @@
     
     
 
-<% end %>
+
  
   </td>
     </tr>
@@ -222,7 +248,7 @@
  </td>
 		
 </div></tr>
-</table></div>
+</table><% end %></div></div>
 
 
 	

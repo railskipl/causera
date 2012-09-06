@@ -4,11 +4,11 @@ gem 'rails', '3.2.3'
 
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
-gem 'rails-footnotes', '>= 3.7.5.rc4', :group => :development
+#gem 'rails-footnotes', '>= 3.7.5.rc4', :group => :development
 
 gem 'therubyracer'
 gem 'execjs'
-gem 'sqlite3'
+#gem 'sqlite3'
 gem 'rmagick'
 gem 'carrierwave'
 gem 'aws-s3'

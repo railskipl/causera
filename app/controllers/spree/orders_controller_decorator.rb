@@ -25,9 +25,8 @@ module Spree
 
       fire_event('spree.cart.add')
       fire_event('spree.order.contents_changed')
-          
-           respond_with(@order) { |format| format.html { redirect_to cart_path } }
 
+      redirect_to cart_path
     end
 
   end

@@ -93,6 +93,9 @@ box-shadow:5px 5px 5px #333333; }
 
 .cart_button{ background:url(/assets/cart_button.png) no-repeat ; width:140px ; height:34px ; border:none ; cursor:pointer; padding: 10px 90px 10px 49px}
 
+.cart_button1{ background:url(/assets/buy.1.jpg) no-repeat ; width:140px ; height:34px ; border:none ; cursor:pointer; padding: 10px 90px 10px 49px}
+
+
 .button2{ background:url(/assets/button.jpg) repeat-x; border:0; border-width:0; cursor:pointer; border-radius:5px; padding:5px; background:#ff9900; box-shadow:1px 1px 0px #7d7d7d; color:#FFFFFF; font-weight:bold; text-shadow:1px 1px 0 #b96f00; text-decoration:none; width:80px}
 
 .lightbox_title{ background:url(/assets/your_cart.jpg) no-repeat 0px 15px; text-align:left; padding:15px 0 20px 45px; font-family:'Rockwell', Arial, Helvetica, sans-serif; font-size:30px; color:#f57d22; margin:0 20px 0 20px; border-bottom:1px solid #e9e9e9;}
@@ -106,9 +109,13 @@ box-shadow:5px 5px 5px #333333; }
 
 
 
-select, input, textarea {
+ input, textarea {
     font-size: 1em;
     width:120px; height:auto; border:1px solid #bbbbbb; background:url(/assets/field_bg.jpg) repeat-x bottom left; padding:2px 2px 2px 5px
+  }
+select{
+    font-size: 1em;
+    width:130px; height:auto; border:1px solid #bbbbbb; background:url(/assets/field_bg.jpg) repeat-x bottom left; padding:2px 2px 2px 5px;overflow:hidden;
   }
 
   h2 {
@@ -163,7 +170,7 @@ select, input, textarea {
       }
 .textfield_bg{ background:#e7e7e7; border-radius: 5px 5px 5px 5px; padding:20px 11px 18px 13px; }
 
-.textfield_bg1{ background:#e7e7e7; border-radius: 5px 5px 5px 5px; padding:8px 8px 0 8px; margin:2px;}
+.textfield_bg1{ background:#e7e7e7; border-radius: 5px 5px 5px 5px; padding:8px 8px 0 8px; margin:-5px;}
 
 .textfield_bg2{ background:#e7e7e7; border-radius: 5px 5px 5px 5px; padding:0px; margin:1px; width:20px;}
 
@@ -182,7 +189,7 @@ select, input, textarea {
 .cart_product{ width:80%; float:left; text-align:left; font-size:14px; color:#434343; background:url(../assets/bullet.jpg) no-repeat 0 5px; padding:0 0 0 15px}
 .cart_price{ width:10%; float:right; text-align:left; font-size:14px; color:#434343; font-weight:bold}
 
-.cart_total{ width:74.9%; float:left; text-align:left; font-size:14px; color:#434343; background:url(../assets/bullet2.jpg) no-repeat 0 5px; padding:0 0 0 15px; font-weight:bold}
+.cart_total{ width:600px; float:left; text-align:left; font-size:14px; color:#434343; background:url(../assets/bullet2.jpg) no-repeat 0 5px; padding:0 0 0 15px; font-weight:bold}
 
 
  .lightbox_title2{ background:url(/assets/shipping.jpg) no-repeat 0px 15px; text-align:left; padding:15px 0 20px 45px; font-family:'Rockwell', Arial, Helvetica, sans-serif; font-size:30px; color:#f57d22; margin:0 20px 0 20px; border-bottom:1px solid #e9e9e9;}

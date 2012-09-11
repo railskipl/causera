@@ -21,17 +21,25 @@
             <%= t(:update) %>
           <% end %>
          
-        </div>
+        </div><br/>
  <div id="subtotal" data-hook class="columns six omega">
-          <h4 class="cart_line2"><div class="cart_total">Sub total 		</div>	 <%= order_subtotal(@order) %></h5>
+         <table width="100%" cellspacing="0" cellpadding="10">
+        <tr  class="cart_line2">
+         		<th align="left" style=" background:url(/assets/bullet2.jpg) no-repeat 3px 9px;width:30%;padding:0 0 0 15px;">Sub total</th>
+         		<th style="width:20%;">&nbsp;</th>
+         		<th  style="width:10%;">&nbsp;</th>
+         		<th align="left" style="padding-left:20px;width: 20%;"> <%= order_subtotal(@order) %></th>
+         		<th  style="width:10%;">&nbsp;</th>	
+         	</tr>
+         </table>
         </div>
         </div>
         <div class="links columns ten alpha" data-hook="cart_buttons">
           <table border="0" align=left cellpadding="15" width="50%">
          <tr>
             	<td align="left">
-         <a href='/checkout' style="background:url(../assets/checkout.jpg) no-repeat; border:0; border-width:0; cursor:pointer; width:121px; height:35px;padding: 7px 87px 36px 35px;" id = 'checkout-link' ></a>
-              <a onclick=" parent.eval('tb_remove()')" style="background:url(../assets/continue_shopping.jpg) no-repeat; border:0; border-width:0; cursor:pointer; width:225px; height:35px;padding: 7px 220px 36px 35px;"></a>
+         <a href='/checkout' style="background:url(/assets/checkout.jpg) no-repeat; border:0; border-width:0; cursor:pointer; width:121px; height:35px;padding: 7px 87px 36px 35px;" id = 'checkout-link' ></a>
+              <a onclick=" parent.eval('tb_remove()')" style="background:url(/assets/continue_shopping.jpg) no-repeat; border:0; border-width:0; cursor:pointer; width:225px; height:35px;padding: 7px 220px 36px 35px;"></a>
 
          </table>
         </div>

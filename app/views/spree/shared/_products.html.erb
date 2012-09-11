@@ -9,7 +9,7 @@
 <head> 
 
     <script src="http://malsup.github.com/jquery.form.js"></script> 
-    <script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.8/jquery-ui.min.js"></script>
+
     
 </head> 
  
@@ -137,7 +137,7 @@
     </script> 
 	
 	 <div class="product_box">
-	 
+	 	<div id="cart-forms" data-hook="cart_form">
 	 	<%= form_for :order, :url => populate_orders_url ,:html => { :id => "myForm#{product.id}"} do |f| %>
 	 	
 	  <table width="100%" border="0" cellspacing="0" cellpadding="">
@@ -145,20 +145,21 @@
     <td width="40%" align="left" valign="top">
 	
 	<div id="container">
-   
-     <div class="fotorama">
+
           	 
           	<% if Spree::Config[:show_zero_stock_products] || product.has_stock? %>
- 
-       <% product.images.each do |i| %>
-        	
+ <% if product.images.size > 1 %>
+  <div class="fotorama">
+       	<% product.images.each do |i| %>
+        	    
               <%= link_to image_tag(i.attachment.url(:mini)), i.attachment.url(:product) %>
               
    			 <% end %>
- 
-<% end %>
+ <% else %>
+   <%= product_image(product, :itemprop => "image") %>
+		<% end %>
   
-     
+     	<% end %> 
   </div>
 	  </div>
 	</td>
@@ -227,9 +228,11 @@
 
             <tr>
     		<td align="right" valign="top">
-    			
-    
+    		<% if Spree::Product.count > 1%>
           <input type="submit" class="cart_button" value="" >
+          <% else %>
+		<input type="submit" class="cart_button1" value="" >
+		<% end %>
           <% else %>
             <%= content_tag('strong', t(:out_of_stock)) %>
           <% end %>
@@ -248,7 +251,7 @@
  </td>
 		
 </div></tr>
-</table><% end %></div>
+</table><% end %></div></div>
 
 
 	

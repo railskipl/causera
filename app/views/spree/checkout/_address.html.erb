@@ -4,7 +4,7 @@
  <div class="lightbox_title2">Shipping and Billing Address</div>
 <div class="columns omega six" data-hook="shipping_fieldset_wrapper">
 <fieldset id="shipping" data-hook style="border: 0;">
-<div style="width:100%; background: url(assets/lightbox_bg.jpg); border-radius: 10px 10px 10px 10px;">
+<div style="width:100%; background: url(/assets/lightbox_bg.jpg); border-radius: 10px 10px 10px 10px;">
 
 <div class="columns omega six" data-hook="shipping_fieldset_wrapper">
 
@@ -96,20 +96,19 @@
       </p>
       </div>
          <% if Spree::Config[:address_requires_state] %>
-     <table><tr><td>   <p class="field" id="bstate">
+     <table cellspacing="0" cellpadding="2" style="margin-left: -3px;"><tr><td>   <p class="field" id="bstate">
           <% have_states = !@order.bill_address.country.states.empty? %>
           
           <%= bill_form.label :state, t(" ") %>
        
           <% state_elements = [
              bill_form.collection_select(:state_id, @order.bill_address.country.states,
-                                :id, :name,
+                                :id, :name,{:include_blank => 'Please select'},
+                                
                                 
                                 {:class => have_states ? 'required' : 'hidden',
-                                :disabled => !have_states}) +
-             bill_form.text_field(:state_name,
-                                :class => !have_states ? 'required' : 'hidden',
-                                :disabled => have_states)
+                                :disabled => !have_states}) 
+             
              ].join.gsub('"', "'").gsub("\n", "")
           %>
           <%= javascript_tag do -%>
@@ -139,7 +138,11 @@
 
 <br/><br/><br/>
 <div class="form-buttons" data-hook="buttons">
- <input type="submit" name="Submit" value="" style="background:url(../assets/continue.jpg) repeat-x; border:0; border-width:0; cursor:pointer; width:121px; height:35px;" />
+	
+ <input type="submit" name="Submit" value="" style="background:url(/assets/continue.jpg) repeat-x; border:0; border-width:0; cursor:pointer; width:121px; height:35px;" />
+
+
+
 </div>
 
 </div>

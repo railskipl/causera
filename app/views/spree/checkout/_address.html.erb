@@ -103,7 +103,7 @@
        
           <% state_elements = [
              bill_form.collection_select(:state_id, @order.bill_address.country.states,
-                                :id, :name,{:include_blank => 'Please select'},
+                                :id, :name,{:include_blank => "Please select"},
                                 
                                 
                                 {:class => have_states ? 'required' : 'hidden',

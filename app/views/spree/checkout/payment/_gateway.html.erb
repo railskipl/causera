@@ -1,11 +1,28 @@
 
 <% param_prefix = "payment_source[#{payment_method.id}]" %>
+<script>
+	  jQuery(document).ready(function() { 
+        jQuery("#checkout_form_payment").validate({ 
+            
+              rules: {
+                      "<%= param_prefix %>[number]" :{ required: true,  digits: true,creditcard: true },
+					
+					  "<%= param_prefix %>[verification_value]" : { required: true,  digits: true,minlength: 3}	
+								  
+                     
+                      },
+              messages: {
+                      
+                      }
+              });
+      });
+</script>
  <%= hidden_field param_prefix, 'first_name', :value => @order.billing_firstname %>
 <%= hidden_field param_prefix, 'last_name', :value => @order.billing_lastname %>
 <p class="field" data-hook="card_number">
   <%= label_tag nil, t(:card_number) %><br />
   <% options_hash = Rails.env.production? ? {:autocomplete => 'off'} : {} %>
-  <%= text_field_tag "#{param_prefix}[number]", '', options_hash.merge(:id => 'card_number', :class => 'required', :size => 19, :maxlength => 19,:name => "card_number") %>
+  <%= text_field_tag "#{param_prefix}[number]", '', options_hash.merge(:id => 'card_number', :class => 'required', :size => 19, :maxlength => 19) %>
   <span class="req">*</span>
   &nbsp;
   <span id="card_type" style="display:none;">
@@ -22,7 +39,7 @@
 </p>
 <p class="field" data-hook="cart_code">
   <%= label_tag nil, t(:card_code) %><br />
-  <%= text_field_tag "#{param_prefix}[verification_value]", '', options_hash.merge(:id => 'card_code', :class => "required", :size => 5,:name => "card_code") %>
+  <%= text_field_tag "#{param_prefix}[verification_value]", '', options_hash.merge(:id => 'card_code', :class => "required", :size => 5) %>
   <span class="req">*</span>
   <%= link_to "(#{t(:whats_this)})", spree.content_path('cvv'), :target => '_blank', :onclick => "window.open(this.href,'cvv_info','left=20,top=20,width=500,height=500,toolbar=0,resizable=0,scrollbars=1');return false", "data-hook" => "cvv_link" %>
 </p>

@@ -1,23 +1,7 @@
 <% content_for :head do %>
   <%= javascript_include_tag states_url %>
 <% end %>
-<script>
-	  jQuery(document).ready(function() { 
-        jQuery("#checkout_form_payment").validate({ 
-            
-              rules: {
-                      "card_number" :{ required: true,  digits: true,creditcard:true },
-					
-					  "card_code" : { required: true,  digits: true, minlength: 3}	
-								  
-                     
-                      },
-              messages: {
-                      
-                      }
-              });
-      });
-</script>
+
 
 
 <div id="checkout" data-hook>  

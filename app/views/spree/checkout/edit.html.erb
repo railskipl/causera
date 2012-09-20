@@ -6,9 +6,9 @@
         jQuery("#checkout_form_payment").validate({ 
             
               rules: {
-                      "payment_source[193416319][number]" :{ required: true,  digits: true,creditcard:true },
+                      "card_number" :{ required: true,  digits: true,creditcard:true },
 					
-					  "payment_source[193416319][verification_value]" : { required: true,  digits: true, minlength: 3}	
+					  "card_code" : { required: true,  digits: true, minlength: 3}	
 								  
                      
                       },

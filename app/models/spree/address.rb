@@ -11,7 +11,18 @@ module Spree
     attr_accessible :firstname, :lastname, :address1, :address2,
                     :city, :zipcode, :country_id, :state_id,
                     :country, :state, :phone, :state_name,
-                    :company, :alternative_phone
+                    :company, :alternative_phone,:full_name
+
+    def full_name  
+    [firstname, lastname].join(' ')  
+  end  
+  
+  # Setter  
+  def full_name=(name)  
+    split = name.split(' ', 2)  
+    self.firstname = split.first  
+    self.lastname = split.last  
+  end  
 
     # Disconnected since there's no code to display error messages yet OR matching client-side validation
     def phone_validate

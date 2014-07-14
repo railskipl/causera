@@ -1,16 +1,16 @@
  common: &common
-    access_key_id: AKIAJBX4A376PDTSSWNA
-    secret_access_key: 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
+    access_key_id: 
+    secret_access_key: 
     
 
 development:
     <<: *common
-    bucket: causera2
+    bucket: 
 
 test:
     <<: *common
-    bucket: causera2
+    bucket: 
 
 production:
     <<: *common
-    bucket: causera2
+    bucket: 
